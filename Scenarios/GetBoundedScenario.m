@@ -1,4 +1,4 @@
-function setup = BoundedScenario()
+function setup = GetBoundedScenario()
     setup = GetStandardSetup();
 
     setup.constraints = InitConstraintPolynomials(setup);

@@ -1,4 +1,4 @@
-function GetStandardSetup()
+function setup = GetStandardSetup()
     num_vars = 2;
     fundamental_directions = GetStandardFundamentalDirections();
     setup = Setup(num_vars, fundamental_directions);
