@@ -1,25 +1,25 @@
-function [decision_polys, sos_program] = DeclareVariables(setup, order, sos_program)
-    [decision_polys, sos_program] = DeclareHyperplaneVariables(setup, sos_program);
-    [decision_polys, sos_program] = DeclareConstraintVariables(setup, order, decision_polys, sos_program);
+function [decision_vars, sos_program] = DeclareVariables(setup, order, sos_program)
+    [decision_vars, sos_program] = DeclareHyperplaneVariables(setup, sos_program);
+    [decision_vars, sos_program] = DeclareConstraintVariables(setup, order, decision_vars, sos_program);
 end
 
-function [decision_polys, sos_program] = DeclareHyperplaneVariables(setup, sos_program)
+function [decision_vars, sos_program] = DeclareHyperplaneVariables(setup, sos_program)
     a = sym('a', [setup.num_vars, 1]);
     syms b;
 
     sos_program = sosdecvar(sos_program, a);
     sos_program = sosdecvar(sos_program, b);
 
-    decision_polys.a = a;
-    decision_polys.b = b;
+    decision_vars.a = a;
+    decision_vars.b = b;
 end
 
-function [decision_polys, sos_program] = DeclareConstraintVariables(setup, order, decision_polys, sos_program)
+function [decision_vars, sos_program] = DeclareConstraintVariables(setup, order, decision_vars, sos_program)
     sigma_degrees = GetSigmaDegrees(setup, order);
 
     for i = 1:length(sigma_degrees)
         sigma_degree = sigma_degrees(i);
-        [decision_polys.sigma(i), sos_program] = DeclareDenseSosPoly(setup.vartable, sigma_degree, sos_program);
+        [decision_vars.sigma(i), sos_program] = DeclareDenseSosPoly(setup.vartable, sigma_degree, sos_program);
     end
 
     NotifyUser(sigma_degree);

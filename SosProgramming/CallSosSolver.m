@@ -1,4 +1,4 @@
-function solution = CallSosSolver(setup, decision_polys, objective_function, sos_program)
+function solution = CallSosSolver(setup, decision_vars, objective_function, sos_program)
     solution = ValidInequality;
     solution.InitUndefined();
     sdp_solver_options = setup.sdp_solver_options;
@@ -14,7 +14,7 @@ function solution = CallSosSolver(setup, decision_polys, objective_function, sos
 
     if solution.solved
         try
-            solution = GetSolutions(decision_polys, objective_function, solution, sos_program);
+            solution = GetSolutions(decision_vars, objective_function, solution, sos_program);
         catch ME
             disp('VI: Not possible to get solutions');
             disp(['VI solution error message: ' ME.message]);
@@ -37,10 +37,10 @@ function solution = EvaluateSolution(solution, solver_info)
     end
 end
 
-function solution = GetSolutions(decision_polys, objective_function, solution, sos_program)
+function solution = GetSolutions(decision_vars, objective_function, solution, sos_program)
     solution.objective = GetOptimalSolution(objective_function, sos_program);
-    solution.a = GetOptimalSolution(decision_polys.a, sos_program);
-    solution.b = GetOptimalSolution(decision_polys.b, sos_program);
+    solution.a = GetOptimalSolution(decision_vars.a, sos_program);
+    solution.b = GetOptimalSolution(decision_vars.b, sos_program);
     disp(['VI: Sos program successfully solved. The bound found is ' num2str(solution.objective) '.']);
 end
 

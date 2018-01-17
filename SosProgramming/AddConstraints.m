@@ -1,10 +1,10 @@
-function sos_program = AddConstraints(setup, fun_dir_index, decision_polys, sos_program)
-    sos_program = AddFacetConstraints(setup, fun_dir_index, decision_polys, sos_program);
-    sos_program = AddValidityConstraint(setup, decision_polys, sos_program);
+function sos_program = AddConstraints(setup, fun_dir_index, decision_vars, sos_program)
+    sos_program = AddFacetConstraints(setup, fun_dir_index, decision_vars, sos_program);
+    sos_program = AddValidityConstraint(setup, decision_vars, sos_program);
 end
 
-function sos_program = AddFacetConstraints(setup, fun_dir_index, decision_polys, sos_program)
-    a = decision_polys.a;
+function sos_program = AddFacetConstraints(setup, fun_dir_index, decision_vars, sos_program)
+    a = decision_vars.a;
     fun_dirs = setup.fundamental_directions;
 
     fun_dir = fun_dirs{fun_dir_index};
@@ -15,12 +15,12 @@ function sos_program = AddFacetConstraints(setup, fun_dir_index, decision_polys,
     sos_program = sosineq(sos_program, equation);
 end
 
-function sos_program = AddValidityConstraint(setup, decision_polys, sos_program)
+function sos_program = AddValidityConstraint(setup, decision_vars, sos_program)
     x = setup.vartable;
 
-    a = decision_polys.a;
-    b = decision_polys.b;
-    sigma = decision_polys.sigma;
+    a = decision_vars.a;
+    b = decision_vars.b;
+    sigma = decision_vars.sigma;
 
     g = setup.constraints;
 
