@@ -2,9 +2,11 @@ function valid_ineqs = RunFullDisjunction(setup)
     valid_ineqs = [];
     for order = setup.min_order:setup.max_order
         NotifyUserStartingHierarchy(order);
+
         best = ComputeOneValidInequality(setup, order);
         valid_ineqs = StoreValidIneq(best, order, valid_ineqs);
-        NotifyUserAboutSolution(best)
+
+        NotifyUserAboutSolution(best);
     end
 end
 
@@ -46,7 +48,7 @@ function NotifyUserOneLevelOfHierarchySolved(order)
 end
 
 function NotifyUserAboutSolution(solution)
-    fprintf('VI: Result: a =(%f, %f), b=%f Obj.=%f\n', solution.a(1), solution.a(2), solution.b, solution.objective)
+    fprintf('VI: Result: a =(%f, %f), b=%f Obj.=%f\n', solution.a(1), solution.a(2), solution.b, solution.objective);
 end
 
 function valid_ineqs = StoreValidIneq(best, order, valid_ineqs)

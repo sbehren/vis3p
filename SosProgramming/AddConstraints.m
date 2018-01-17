@@ -7,18 +7,6 @@ function sos_program = AddFacetConstraints(setup, fun_dir_index, decision_polys,
     a = decision_polys.a;
     fun_dirs = setup.fundamental_directions;
 
-    %for index = 1:length(fun_dirs)
-    %    fun_dir = fun_dirs{index};
-    %    fun_dir_str = sprintf('%d ', fun_dir);
-    %    fprintf('VI: Adding equation for fundamental direction %s.\n', fun_dir_str);
-    %    equation = 1 - sum(fun_dir .* a);
-    %    if index ~= fun_dir_index
-    %        sos_program = sosineq(sos_program, equation);
-    %    else
-    %        sos_program = soseq(sos_program, equation);
-    %    end
-    %end
-
     fun_dir = fun_dirs{fun_dir_index};
     fun_dir_str = sprintf('%d ', fun_dir);
     fprintf('VI: Adding equation for fundamental direction %s.\n', fun_dir_str);

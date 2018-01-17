@@ -1,11 +1,9 @@
 function [decision_polys, sos_program] = DeclareVariables(setup, order, sos_program)
     [decision_polys, sos_program] = DeclareHyperplaneVariables(setup, sos_program);
     [decision_polys, sos_program] = DeclareConstraintVariables(setup, order, decision_polys, sos_program);
-
 end
 
 function [decision_polys, sos_program] = DeclareHyperplaneVariables(setup, sos_program)
-
     a = sym('a', [setup.num_vars, 1]);
     syms b;
 
@@ -17,7 +15,6 @@ function [decision_polys, sos_program] = DeclareHyperplaneVariables(setup, sos_p
 end
 
 function [decision_polys, sos_program] = DeclareConstraintVariables(setup, order, decision_polys, sos_program)
-
     sigma_degrees = GetSigmaDegrees(setup, order);
 
     for i = 1:length(sigma_degrees)
@@ -34,9 +31,9 @@ function [decision_polys, sos_program] = DeclareConstraintVariables(setup, order
         for j = 1:length(constraints)
             g = constraints(j);
             deg = GetDegree(g);
+            % Let k = truncation order. Then we require deg(sigma_j g_j) <= k.
             sigma_degrees(j) = RoundDownToEven(order - deg); 
         end
-        % Let k = truncation order. Then we require deg(sigma_j g_j) <= order 
     end
 end
 
@@ -52,14 +49,14 @@ function [dense_sos_poly, sos_program] = DeclareDenseSosPoly(vartable, degree, s
     end
 end
 
-function NotifyUser(sigma_degrees)
-    disp(['VI: Created sos polynomial of degree(s) ', num2str(sigma_degrees)]);
-end
-
 function degree = GetDegree(poly)
     degree = feval(symengine, 'degree', poly);
 end
 
 function result = RoundDownToEven(n)
     result = floor(n/2)*2;
+end
+
+function NotifyUser(sigma_degrees)
+    disp(['VI: Created sos polynomial of degree(s) ', num2str(sigma_degrees)]);
 end
