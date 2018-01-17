@@ -1,4 +1,4 @@
-classdef Setup
+classdef Setup < handle
     properties
         min_order;
         max_order;
@@ -7,11 +7,11 @@ classdef Setup
         constraints;
         q;
         fundamental_directions;
-        sdp_solver_options.solver = 'sedumi';
+        sdp_solver = 'sedumi';
     end
 
     methods
-        function obj = Setup(num_vars, fundamental_directions, constraints)
+        function obj = Setup(num_vars, fundamental_directions)
             obj.num_vars = num_vars;
             obj.vartable = sym('x', [num_vars, 1]);
             obj.fundamental_directions = fundamental_directions;

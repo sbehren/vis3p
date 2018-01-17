@@ -1,7 +1,7 @@
 function solution = CallSosSolver(setup, decision_vars, objective_function, sos_program)
     solution = ValidInequality;
     solution.InitUndefined();
-    sdp_solver_options = setup.sdp_solver_options;
+    sdp_solver_options.solver = setup.sdp_solver;
 
     try
         disp('VI: Attempting to solve sos program.');
