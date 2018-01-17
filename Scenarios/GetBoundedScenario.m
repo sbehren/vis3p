@@ -1,8 +1,6 @@
 function setup = BoundedScenario()
-    num_vars = 2;
-    fundamental_directions = GetStandardFundamentalDirections();
+    setup = GetStandardSetup();
 
-    setup = Setup(num_vars, fundamental_directions);
     setup.constraints = InitConstraintPolynomials(setup);
     setup.q = [0.4; -0.5];
     setup.min_order = 4;
