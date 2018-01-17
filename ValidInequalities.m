@@ -7,7 +7,7 @@ function ValidInequalities()
 end
 
 function setup = Setup()
-    setup.min_order = 5;
+    setup.min_order = 4;
     setup.max_order = setup.min_order;
     setup.num_vars = 2;
     setup.vartable = sym('x', [setup.num_vars, 1]);
