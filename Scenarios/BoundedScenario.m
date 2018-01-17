@@ -1,6 +1,6 @@
 function setup = BoundedScenario()
     num_vars = 2;
-    fundamental_directions = GiveFundamentalDirections();
+    fundamental_directions = GetStandardFundamentalDirections();
 
     setup = Setup(num_vars, fundamental_directions);
     setup.constraints = InitConstraintPolynomials(setup);
@@ -14,9 +14,4 @@ function constraints = InitConstraintPolynomials(setup)
     constraints = [1 - x(1)^2 - x(2)^2, x(1) + x(2)^3];
     %constraints = [x(1) - x(2), 1 - x(1)^2 - x(2)^2];
     %constraints = 1 - x(1)^2 - x(2)^2;
-end
-
-function fundamental_directions = GiveFundamentalDirections()
-    %fundamental_directions = {[1; 0], [-1; 0], [0; 1], [0; -1]};
-    fundamental_directions = {[0; -1]};
 end
