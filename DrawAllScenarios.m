@@ -1,5 +1,5 @@
 function ValidInequalities()
-    setup = GetBoundedScenario();
+    setup = GetUnboundedScenario();
 
     valid_ineqs = RunFullDisjunction(setup);
 
