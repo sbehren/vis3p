@@ -12,7 +12,7 @@ function best = ComputeOneValidInequality(setup, order)
     fun_dirs = setup.fundamental_directions;
 
     for fun_dir_index = 1:length(fun_dirs)
-        solution = SolveOneLevel(setup, order, fun_dir_index);
+        solution = SolveOneFundamentalDirection(setup, order, fun_dir_index);
         NotifyUserAboutSolution(solution);
         best = CompareBestWithCurrent(best, solution);
     end
