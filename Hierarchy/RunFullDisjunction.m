@@ -25,8 +25,7 @@ function best = ComputeOneValidInequality(setup, order)
 end
 
 function best = InitBestSolution()
-    best = ValidInequality;
-    best.InitUndefined();
+    best = Result();
 end
 
 function best = CompareBestWithCurrent(best, solution)

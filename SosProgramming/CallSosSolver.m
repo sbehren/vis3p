@@ -1,6 +1,5 @@
 function solution = CallSosSolver(setup, decision_vars, objective_function, sos_program)
-    solution = ValidInequality;
-    solution.InitUndefined();
+    solution = Result();
     sdp_solver_options.solver = setup.sdp_solver;
 
     try
