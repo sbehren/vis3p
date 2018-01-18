@@ -6,6 +6,7 @@ classdef Setup < handle
         vartable;
         constraints;
         q;
+        feasibility_variant;
         fundamental_directions;
         sdp_solver = 'sedumi';
     end

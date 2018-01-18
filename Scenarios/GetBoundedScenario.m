@@ -1,6 +1,7 @@
 function setup = GetBoundedScenario()
     setup = GetStandardSetup();
 
+    setup.feasibility_variant = true;
     setup.constraints = InitConstraintPolynomials(setup);
     setup.q = [0.4; -0.5];
     setup.min_order = 4;
