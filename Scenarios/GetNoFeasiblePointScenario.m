@@ -2,7 +2,7 @@
 function setup = GetNoFeasiblePointScenario()
     setup = GetStandardSetup();
 
-    setup.feasibility_variant = true;
+    setup.is_feasibility_variant = true;
     setup.constraints = InitConstraintPolynomials(setup);
     setup.q = false;
     setup.truncation_order = 4;

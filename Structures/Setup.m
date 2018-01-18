@@ -5,8 +5,13 @@ classdef Setup < handle
         constraints;
         truncation_order;
         q;
-        feasibility_variant;
+
+        is_feasibility_variant = false; % set objective = 0
+        normal_is_fixed = false;        % a is fixed
+        fixed_normal = [];
+
         fundamental_directions;
+
         sdp_solver = 'sedumi';
     end
 
