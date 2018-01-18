@@ -1,8 +1,8 @@
-function DrawResults(setup, valid_ineqs)
+function DrawResults(setup, result)
     StartPlottingEngine();
 
     PlotConstraints(setup);
-    PlotValidInequality(valid_ineqs);
+    PlotValidInequality(result);
     PlotFeasiblePoint(setup);
 
     SetLegends(setup);
@@ -24,14 +24,9 @@ function PlotConstraints(setup)
     end
 end
 
-function PlotValidInequality(valid_ineqs)
+function PlotValidInequality(result)
     disp('VI: Start plotting.')
-    for idx = 1:length(valid_ineqs)
-        valid_ineq = valid_ineqs{idx};
-        if valid_ineq ~= 0
-            ContourPlotWrapper(valid_ineq.linear_function);
-        end
-    end
+    ContourPlotWrapper(result.linear_function);
 end
 
 function PlotFeasiblePoint(setup)

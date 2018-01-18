@@ -1,7 +1,10 @@
-function ValidInequalities()
-    setup = GetUnboundedScenario();
+function DrawAllScenarios()
+    unrelated_setups = {GetBoundedScenario()};
+    %unrelated_setups = {GetBoundedScenario(), GetUnboundedScenario(), GetNoFeasiblePointScenario()};
 
-    valid_ineqs = RunFullDisjunction(setup);
-
-    DrawResults(setup, valid_ineqs);
+    for i = 1:length(unrelated_setups)
+        setup = unrelated_setups{i};
+        result = RunFullDisjunction(setup);
+        DrawResults(setup, result);
+    end
 end

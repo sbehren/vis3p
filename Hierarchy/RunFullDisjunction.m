@@ -1,17 +1,16 @@
-function valid_ineqs = RunFullDisjunction(setup)
+function result = RunFullDisjunction(setup)
     valid_ineqs = [];
     for order = setup.min_order:setup.max_order
         NotifyUserStartingHierarchy(order);
 
-        best = ComputeOneValidInequality(setup, order);
-        valid_ineqs = StoreValidIneq(best, order, valid_ineqs);
+        result = ComputeOneValidInequality(setup, order);
 
-        NotifyUserAboutSolution(best);
+        NotifyUserAboutSolution(result);
     end
 end
 
 function best = ComputeOneValidInequality(setup, order)
-    best = InitBestSolution();
+    best = Result();
 
     fun_dirs = setup.fundamental_directions;
 
@@ -22,10 +21,6 @@ function best = ComputeOneValidInequality(setup, order)
     end
     best.InitLinearFunction(setup.vartable);
     NotifyUserOneLevelOfHierarchySolved(order);
-end
-
-function best = InitBestSolution()
-    best = Result();
 end
 
 function best = CompareBestWithCurrent(best, solution)
