@@ -4,10 +4,14 @@ function [decision_vars, sos_program] = DeclareVariables(setup, order, sos_progr
 end
 
 function [decision_vars, sos_program] = DeclareHyperplaneVariables(setup, sos_program)
-    a = sym('a', [setup.num_vars, 1]);
-    syms b;
+    if setup.normal_is_fixed
+        a = setup.fixed_normal 
+    else
+        a = sym('a', [setup.num_vars, 1]);
+        sos_program = sosdecvar(sos_program, a);
+    end
 
-    sos_program = sosdecvar(sos_program, a);
+    syms b;
     sos_program = sosdecvar(sos_program, b);
 
     decision_vars.a = a;
