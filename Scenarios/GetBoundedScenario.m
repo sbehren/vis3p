@@ -1,5 +1,6 @@
 function setup = GetBoundedScenario()
     setup = GetStandardSetup();
+    setup.name = 'bounded';
 
     setup.constraints = InitConstraintPolynomials(setup);
     setup.q = [0.4; -0.5];

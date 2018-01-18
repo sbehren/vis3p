@@ -3,7 +3,11 @@ function DrawResults(setup, result)
 
     PlotConstraints(setup);
     PlotValidInequality(result);
-    PlotFeasiblePoint(setup);
+
+    
+    if ~ setup.is_feasibility_variant
+        PlotFeasiblePoint(setup);
+    end
 
     SetLegends(setup);
 
@@ -39,6 +43,7 @@ function ContourPlotWrapper(f)
     linestyles = {'-', '-.', ':'};
     current_linestyle = linestyles{style_index + 1};
 
+    %fcontour(f, 'LevelList', 0, 'LineWidth', 1.5', 'LineStyle', current_linestyle, 'LineColor', 'k');
     fcontour(f, [-1.5, 1.5], 'LevelList', 0, 'LineWidth', 1.5', 'LineStyle', current_linestyle, 'LineColor', 'k');
 end
 
@@ -57,11 +62,16 @@ function StopPlottingEngine()
 end
 
 function SetLegends(setup)
-    q_str = [num2str(setup.q(1)), ',', num2str(setup.q(2))];
     constraints_str = GetConstraintStrings(setup.constraints);
     valid_ineq_str = 'valid inequality $a^Tx \leq b$';
-    feasible_point_str = ['feasible point $q=(', q_str, ')$'];
-    legend_text = [constraints_str, {valid_ineq_str, feasible_point_str}];
+
+    if setup.is_feasibility_variant
+        legend_text = [constraints_str, {valid_ineq_str}];
+    else
+        q_str = [num2str(setup.q(1)), ',', num2str(setup.q(2))];
+        feasible_point_str = ['feasible point $q=(', q_str, ')$'];
+        legend_text = [constraints_str, {valid_ineq_str, feasible_point_str}];
+    end
 
     style_config = {'Interpreter', 'latex', 'FontSize', 14};
 

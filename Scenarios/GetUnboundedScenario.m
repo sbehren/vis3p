@@ -1,5 +1,6 @@
 function setup = GetUnboundedScenario()
     setup = GetStandardSetup();
+    setup.name = 'unbounded';
 
     setup.constraints = InitConstraintPolynomials(setup);
     setup.q = [0.25; 0.5];

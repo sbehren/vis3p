@@ -1,5 +1,7 @@
 classdef Setup < handle
     properties
+        name;
+
         num_vars;
         vartable;
         constraints;
