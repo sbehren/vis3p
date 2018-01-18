@@ -58,5 +58,5 @@ function result = RoundDownToEven(n)
 end
 
 function NotifyUser(sigma_degrees)
-    disp(['VI: Created sos polynomial of degree(s) ', num2str(sigma_degrees)]);
+    disp(['VI: Created sos polynomial of degree(s) ', num2str(sigma_degrees), '.']);
 end

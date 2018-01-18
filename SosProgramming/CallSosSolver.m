@@ -16,11 +16,11 @@ function solution = CallSosSolver(setup, decision_vars, objective_function, sos_
         try
             solution = GetSolutions(decision_vars, objective_function, solution, sos_program);
         catch ME
-            disp('VI: Not possible to get solutions');
+            disp('VI: Not possible to get solutions.');
             disp(['VI solution error message: ' ME.message]);
         end
     else
-        disp('VI: No valid inequality found');
+        disp('VI: No valid inequality found.');
     end
 end
 

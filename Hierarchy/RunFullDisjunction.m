@@ -31,7 +31,7 @@ end
 
 function best = CompareBestWithCurrent(best, solution)
     if solution.solved && best.objective > solution.objective
-        disp('VI: Better solution found');
+        disp('VI: Better solution found.');
         best.objective = solution.objective;
         best.a = solution.a;
         best.b = solution.b;
@@ -48,7 +48,7 @@ function NotifyUserOneLevelOfHierarchySolved(order)
 end
 
 function NotifyUserAboutSolution(solution)
-    fprintf('VI: Result: a =(%f, %f), b=%f Obj.=%f\n', solution.a(1), solution.a(2), solution.b, solution.objective);
+    fprintf('VI: Result: a = (%f, %f), b = %f Obj. = %f.\n', solution.a(1), solution.a(2), solution.b, solution.objective);
 end
 
 function valid_ineqs = StoreValidIneq(best, order, valid_ineqs)
