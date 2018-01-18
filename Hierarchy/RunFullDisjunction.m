@@ -1,11 +1,9 @@
 function result = RunFullDisjunction(setup)
-    for order = setup.min_order:setup.max_order
-        NotifyUserStartingHierarchy(order);
+    order = setup.truncation_order
 
-        result = ComputeOneValidInequality(setup, order);
-
-        NotifyUserAboutSolution(result);
-    end
+    NotifyUserStartingHierarchy(order);
+    result = ComputeOneValidInequality(setup, order);
+    NotifyUserAboutSolution(result);
 end
 
 function best = ComputeOneValidInequality(setup, order)
