@@ -1,10 +1,9 @@
 classdef Setup < handle
     properties
-        min_order;
-        max_order;
         num_vars;
         vartable;
         constraints;
+        truncation_order;
         q;
         feasibility_variant;
         fundamental_directions;

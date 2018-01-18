@@ -1,5 +1,4 @@
 function result = RunFullDisjunction(setup)
-    valid_ineqs = [];
     for order = setup.min_order:setup.max_order
         NotifyUserStartingHierarchy(order);
 
@@ -25,7 +24,7 @@ end
 
 function best = CompareBestWithCurrent(best, solution)
     if solution.solved && best.objective > solution.objective
-        disp('VI: Better solution found.');
+        NotifyUserBetterSolutionFound();
         best.objective = solution.objective;
         best.a = solution.a;
         best.b = solution.b;
@@ -45,6 +44,6 @@ function NotifyUserAboutSolution(solution)
     fprintf('VI: Result: a = (%f, %f), b = %f Obj. = %f.\n', solution.a(1), solution.a(2), solution.b, solution.objective);
 end
 
-function valid_ineqs = StoreValidIneq(best, order, valid_ineqs)
-    valid_ineqs{order + 1} = best;
+function NotifyUserBetterSolutionFound()
+    disp('VI: Better solution found.');
 end

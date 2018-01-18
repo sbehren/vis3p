@@ -4,8 +4,7 @@ function setup = GetBoundedScenario()
     setup.feasibility_variant = true;
     setup.constraints = InitConstraintPolynomials(setup);
     setup.q = [0.4; -0.5];
-    setup.min_order = 4;
-    setup.max_order = setup.min_order;
+    setup.truncation_order = 4;
 end
 
 function constraints = InitConstraintPolynomials(setup)
