@@ -1,7 +1,8 @@
-function setup = GetNoReoptimizeScenario()
+function setup = GetReoptimizeScenario()
     setup = GetStandardSetup();
     setup.name = 'reoptimize';
 
+    setup.is_feasibility_variant = true;
     setup.normal_is_fixed = true;
     setup.constraints = InitConstraintPolynomials(setup);
     setup.q = false;

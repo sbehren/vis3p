@@ -11,8 +11,10 @@ function sos_program = AddFacetConstraints(setup, fun_dir_index, decision_vars, 
     fun_dir_str = sprintf('%d ', fun_dir);
     fprintf('VI: Adding equation for fundamental direction %s.\n', fun_dir_str);
 
-    equation = sum(fun_dir .* a) - 1;
-    sos_program = sosineq(sos_program, equation);
+    if ~ setup.normal_is_fixed
+        equation = sum(fun_dir .* a) - 1;
+        sos_program = sosineq(sos_program, equation);
+    end
 end
 
 function sos_program = AddValidityConstraint(setup, decision_vars, sos_program)

@@ -1,13 +1,11 @@
 function DrawAllScenarios()
     saved_result = DrawIndependentScenarios();
-
     %DrawDependentScenario(saved_result);
 end
 
 function saved_result = DrawIndependentScenarios()
     independent_setups = {GetBoundedScenario()};
-    %independent_setups = {GetNoFeasiblePointScenario()};
-    saved_result = [];
+   % independent_setups = {GetNoFeasiblePointScenario()};
     %independent_setups = {GetBoundedScenario(), GetUnboundedScenario(), GetNoFeasiblePointScenario()};
 
     for i = 1:length(independent_setups)
@@ -21,9 +19,8 @@ function saved_result = DrawIndependentScenarios()
 end
 
 function DrawDependentScenario(result)
-    dependent_setup = GetNoReoptimizeScenario();
+    dependent_setup = GetReoptimizeScenario();
     dependent_setup.fixed_normal = result.a;
     result = RunFullDisjunction(dependent_setup);
     DrawResults(dependent_setup, result);
-    disp
 end
