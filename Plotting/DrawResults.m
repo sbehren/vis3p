@@ -11,7 +11,8 @@ function DrawResults(setup, result)
 
     SetLegends(setup);
 
-    export_fig('myfig.eps');
+    path = setup.GetPath();
+    export_fig(path);
     StopPlottingEngine();
 end
 
@@ -43,7 +44,6 @@ function ContourPlotWrapper(f)
     linestyles = {'-', '-.', ':'};
     current_linestyle = linestyles{style_index + 1};
 
-    %fcontour(f, 'LevelList', 0, 'LineWidth', 1.5', 'LineStyle', current_linestyle, 'LineColor', 'k');
     fcontour(f, [-1.5, 1.5], 'LevelList', 0, 'LineWidth', 1.5', 'LineStyle', current_linestyle, 'LineColor', 'k');
 end
 

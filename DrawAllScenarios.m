@@ -1,12 +1,10 @@
 function DrawAllScenarios()
     saved_result = DrawIndependentScenarios();
-    %DrawDependentScenario(saved_result);
+    DrawDependentScenario(saved_result);
 end
 
 function saved_result = DrawIndependentScenarios()
-    independent_setups = {GetBoundedScenario()};
-   % independent_setups = {GetNoFeasiblePointScenario()};
-    %independent_setups = {GetBoundedScenario(), GetUnboundedScenario(), GetNoFeasiblePointScenario()};
+    independent_setups = {GetBoundedScenario(), GetUnboundedScenario(), GetNoFeasiblePointScenario()};
 
     for i = 1:length(independent_setups)
         setup = independent_setups{i};
