@@ -1,5 +1,5 @@
 function result = RunFullDisjunction(setup)
-    order = setup.truncation_order
+    order = setup.truncation_order;
 
     NotifyUserStartingHierarchy(order);
     result = ComputeOneValidInequality(setup, order);
@@ -39,7 +39,7 @@ function NotifyUserOneLevelOfHierarchySolved(order)
 end
 
 function NotifyUserAboutSolution(solution)
-    fprintf('VI: Result: a = (%f, %f), b = %f Obj. = %f.\n', solution.a(1), solution.a(2), solution.b, solution.objective);
+    fprintf('VI: Result: a = %s, b = %f Obj. = %f.\n', Vec2Str(solution.a), solution.b, solution.objective);
 end
 
 function NotifyUserBetterSolutionFound()

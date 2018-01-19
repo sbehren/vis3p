@@ -1,6 +1,6 @@
 function setup = GetBoundedScenarioHighOrder()
     setup = GetStandardSetup();
-    setup.name = 'bounded-high';
+    setup.name = 'bounded_high';
 
     setup.constraints = InitConstraintPolynomials(setup);
     setup.q = [0.4; -0.5];

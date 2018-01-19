@@ -5,7 +5,7 @@ end
 
 function [decision_vars, sos_program] = DeclareHyperplaneVariables(setup, sos_program)
     if setup.normal_is_fixed
-        a = setup.fixed_normal 
+        a = setup.fixed_normal;
     else
         a = sym('a', [setup.num_vars, 1]);
         sos_program = sosdecvar(sos_program, a);
@@ -62,5 +62,5 @@ function result = RoundDownToEven(n)
 end
 
 function NotifyUser(sigma_degrees)
-    disp(['VI: Created sos polynomial of degree(s) ', num2str(sigma_degrees), '.']);
+    fprintf('VI: Created sos polynomial of degree(s) %s.', Vec2Str(sigma_degrees));
 end

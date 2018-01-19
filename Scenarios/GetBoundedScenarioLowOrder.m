@@ -1,10 +1,10 @@
 function setup = GetBoundedScenarioLowOrder()
     setup = GetStandardSetup();
-    setup.name = 'bounded-low';
+    setup.name = 'bounded_low';
 
     setup.constraints = InitConstraintPolynomials(setup);
     setup.q = [0.4; -0.5];
-    setup.truncation_order = 4;
+    setup.truncation_order = 2;
 end
 
 function constraints = InitConstraintPolynomials(setup)
