@@ -1,6 +1,6 @@
-function setup = GetBoundedScenario()
+function setup = GetBoundedScenarioLowOrder()
     setup = GetStandardSetup();
-    setup.name = 'bounded';
+    setup.name = 'bounded-low';
 
     setup.constraints = InitConstraintPolynomials(setup);
     setup.q = [0.4; -0.5];

@@ -4,7 +4,7 @@ function DrawAllScenarios()
 end
 
 function saved_result = DrawIndependentScenarios()
-    independent_setups = {GetBoundedScenario(), GetUnboundedScenario(), GetNoFeasiblePointScenario()};
+    independent_setups = {GetBoundedScenarioLowOrder(), GetBoundedScenarioHighOrder(), GetUnboundedScenario(), GetNoFeasiblePointScenario()};
 
     for i = 1:length(independent_setups)
         setup = independent_setups{i};
