@@ -23,18 +23,11 @@ classdef Setup < handle
             obj.vartable = sym('x', [num_vars, 1]);
             obj.fundamental_directions = fundamental_directions;
         end
-        function path = GetPath(obj)
-            changed_files_present = CheckGitIntegrity();
-            %assert(~ changed_files_present);
-            %TODO
 
-            [errorcode, git_revision] = system('git rev-parse HEAD');
-            assert(errorcode == 0, 'VI: Could not get revision info in system call to git.');
+        function path = GetPath(obj)
+            AssertGitIntegrity();
+            git_revision = GetGitRevison();
             path = strcat(obj.name, '-', git_revision, '.eps');
         end
     end
-end
-
-function changed_files_present = CheckGitIntegrity()
-    [changed_files_present, ~] = system('git diff --exit-code');
 end
