@@ -14,7 +14,7 @@ classdef Setup < handle
 
         fundamental_directions;
 
-        sdp_solver = 'sedumi';
+        sdp_solver = 'sdpt3';
     end
 
     methods
