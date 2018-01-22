@@ -28,11 +28,26 @@ function [sos_program, solver_info] = CallSolver(sos_program, sdp_solver_options
 end
 
 function solution = EvaluateSolution(solution, solver_info)
-    if solver_info.pinf == 0 && solver_info.dinf == 0 
-        if isfield(solver_info, 'numerr')
-            solution.numerical_errors = solver_info.numerr;
-        end
+    if isfield(solver_info, 'numerr')
+        solution.numerical_errors = solver_info.numerr;
+    end
+    if SolutionIsFeasible(solver_info) && ~ SolutionHasNumericalErrors(solution)
         solution.solved = true;
+    else
+        solution.solved = false;
+    end
+end
+
+function is_feasible = SolutionIsFeasible(solver_info)
+    is_feasible = solver_info.pinf == 0 && solver_info.dinf == 0;
+end
+
+function has_errors = SolutionHasNumericalErrors(solution)
+    errorcode = solution.numerical_errors;
+    if ~ isnan(errorcode) && errorcode ~= 0
+        has_errors = true;
+    else
+        has_errors = false;
     end
 end
 
@@ -40,7 +55,7 @@ function solution = GetSolutions(decision_vars, objective_function, solution, so
     solution.objective = GetOptimalSolution(objective_function, sos_program);
     solution.a = GetOptimalSolution(decision_vars.a, sos_program);
     solution.b = GetOptimalSolution(decision_vars.b, sos_program);
-    disp(['VI: Sos program successfully solved. The bound found is ' num2str(solution.objective) '.']);
+    disp(['VI: Sos program successfully solved.']);
 end
 
 function value = GetOptimalSolution(variable, sos_program)

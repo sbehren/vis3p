@@ -2,8 +2,8 @@ classdef Result < handle
     properties
         a = NaN;
         b = NaN;
-        objective = NaN;
-        solved = NaN;
+        objective = Inf;
+        solved = false;
         numerical_errors = NaN;
         linear_function = NaN;
     end

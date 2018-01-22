@@ -29,7 +29,7 @@ end
 
 function NotifyUserStartingHierarchy(setup)
     fprintf('\n\n************************************\n');
-    fprintf('VI: At scenario %s.\n', setup.name);
+    fprintf('VI: Scenario "%s".\n', setup.name);
     fprintf('VI: Starting k = %dth truncation order.\n', setup.truncation_order);
 end
 
@@ -38,9 +38,9 @@ function NotifyUserOneLevelOfHierarchySolved(setup)
 end
 
 function NotifyUserAboutSolution(solution)
-    fprintf('VI: Result: a = %s, b = %f Obj. = %f.\n', Vec2Str(solution.a), solution.b, solution.objective);
+    fprintf('VI: Result: a = %s, b = %f, obj. val. = %f.\n', Vec2Str(solution.a), solution.b, solution.objective);
 end
 
 function NotifyUserBetterSolutionFound()
-    disp('VI: Better solution found.');
+    disp('VI: Incumbent solution was updated.');
 end
