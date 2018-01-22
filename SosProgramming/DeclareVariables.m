@@ -73,5 +73,5 @@ function result = RoundDownToEven(n)
 end
 
 function NotifyUser(sigma_degs)
-    fprintf('VI: Created sos polynomial of degree(s) %s.', Vec2Str(sigma_degs));
+    fprintf('VI: Created sos polynomial of degree(s) %s.\n', Vec2Str(sigma_degs));
 end

@@ -2,9 +2,9 @@ classdef Result < handle
     properties
         a = NaN;
         b = NaN;
-        objective = Inf;
-        solved = false;
-        numerical_errors = true;
+        objective = NaN;
+        solved = NaN;
+        numerical_errors = NaN;
         linear_function = NaN;
     end
     methods
