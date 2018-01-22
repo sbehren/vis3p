@@ -3,25 +3,31 @@ function DrawAllScenarios()
     DrawDependentScenario(saved_result);
 end
 
-function saved_result = DrawIndependentScenarios()
-    independent_setups = {GetBoundedScenarioLowOrder};
-    %independent_setups = {GetBoundedScenarioLowOrder(), GetBoundedScenarioHighOrder(), GetUnboundedScenario(), GetNoFeasiblePointScenario()};
+function DrawIndependentScenarios()
+    %independent_setups = {GetBoundedScenarioLowOrder};
+    all_setups = {GetBoundedScenarioLowOrder(), GetBoundedScenarioHighOrder(), GetUnboundedScenario(), GetNoFeasiblePointScenario(), GetReoptimizeScenario()};
+    fixed_normal = NaN;
 
-    for i = 1:length(independent_setups)
-        setup = independent_setups{i};
-        result = RunFullDisjunction(setup);
-        if strcmp(setup.name, 'feasibility')
-            saved_result = result;
+    for i = 1:length(all_setups)
+        setup = all_setups{i};
+
+        if strcmp(setup.name, 'reoptimize')
+            AssertSetupsInRightOrder(fixed_normal);
+            setup.fixed_normal = fixed_normal;
         end
+
+        result = RunFullDisjunction(setup);
+
+        if strcmp(setup.name, 'feasibility')
+            fixed_normal = result.a;
+        end
+
         DrawResults(setup, result);
         LogSetupAndResult(setup, result);
     end
 end
 
-function DrawDependentScenario(result)
-    dependent_setup = GetReoptimizeScenario();
-    dependent_setup.fixed_normal = result.a;
-    result = RunFullDisjunction(dependent_setup);
-    DrawResults(dependent_setup, result);
-    LogSetupAndResult(setup, result);
+function AssertSetupsInRightOrder(fixed_normal)
+   assert(~ isnan(fixed_normal), 'VI: Error. Need fixed normal for reoptimize scenario.');
 end
+
