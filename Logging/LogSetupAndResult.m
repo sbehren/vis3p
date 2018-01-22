@@ -47,13 +47,18 @@ end
 function WriteSolutionInfo(file, result)
     a = result.a;
     for i = 1:length(a)
-        a_info = ['a(' num2str(i) ') = ' Float2Str(a(i))];
-        fwriteln(file, a_info);
+        a_desc = ['a(' num2str(i) ')'];
+        WriteNumericalValue(file, a(i), a_desc);
     end
 
-    b = result.b;
-    b_info = ['b = ' Float2Str(b)];
-    fwriteln(file, b_info);
+    WriteNumericalValue(file, result.b, 'b');
+
+    WriteNumericalValue(file, result.objective, 'Objective value');
+end
+
+function WriteNumericalValue(file, value, description)
+    output_str = [description ' = ' Float2Str(value)];
+    fwriteln(file, output_str);
 end
 
 function fwriteln(file, str)
