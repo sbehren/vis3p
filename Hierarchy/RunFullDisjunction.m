@@ -1,10 +1,11 @@
 function result = RunFullDisjunction(setup)
-    NotifyUserStartingHierarchy(setup);
     result = ComputeOneValidInequality(setup);
     NotifyUserAboutSolution(result);
 end
 
 function best = ComputeOneValidInequality(setup)
+    NotifyUserStartingHierarchy(setup);
+
     best = Result();
 
     fun_dirs = setup.fundamental_directions;

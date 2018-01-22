@@ -24,6 +24,6 @@ function DrawAllScenarios()
 end
 
 function AssertSetupsInRightOrder(fixed_normal)
-   assert(any(isnan(fixed_normal), 'VI: Error. Need fixed normal for reoptimize scenario.'));
+   assert(~ any(isnan(fixed_normal)), 'VI: Error. Need fixed normal for reoptimize scenario.');
 end
 
