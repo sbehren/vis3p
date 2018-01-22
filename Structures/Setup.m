@@ -15,6 +15,8 @@ classdef Setup < handle
         fundamental_directions;
 
         sdp_solver = 'sdpt3';
+
+        data_folder = 'data';
     end
 
     methods
@@ -24,11 +26,17 @@ classdef Setup < handle
             obj.fundamental_directions = fundamental_directions;
         end
 
-        function path = GetFigureName(obj)
-            path = [obj.name '.eps'];
+        function name = GetFigureName(obj)
+            name = obj.GetFilenameWithEnding('eps');
         end
+
         function name = GetLogfileName(obj)
-            name = [obj.name '.log'];
+            name = obj.GetFilenameWithEnding('log');
+        end
+
+        function prefix = GetFilenameWithEnding(obj, ending)
+            prefix = [obj.data_folder '/' obj.name '.' ending];
         end
     end
 end
+
