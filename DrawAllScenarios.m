@@ -1,10 +1,6 @@
 function DrawAllScenarios()
-    saved_result = DrawIndependentScenarios();
-    DrawDependentScenario(saved_result);
-end
 
-function DrawIndependentScenarios()
-    %independent_setups = {GetBoundedScenarioLowOrder};
+    %all_setups = {GetBoundedScenarioLowOrder};
     all_setups = {GetBoundedScenarioLowOrder(), GetBoundedScenarioHighOrder(), GetUnboundedScenario(), GetNoFeasiblePointScenario(), GetReoptimizeScenario()};
     fixed_normal = NaN;
 
@@ -28,6 +24,6 @@ function DrawIndependentScenarios()
 end
 
 function AssertSetupsInRightOrder(fixed_normal)
-   assert(~ isnan(fixed_normal), 'VI: Error. Need fixed normal for reoptimize scenario.');
+   assert(any(isnan(fixed_normal), 'VI: Error. Need fixed normal for reoptimize scenario.'));
 end
 
