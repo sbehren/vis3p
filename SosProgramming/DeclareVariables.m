@@ -1,6 +1,6 @@
-function [decision_vars, sos_program] = DeclareVariables(setup, order, sos_program)
+function [decision_vars, sos_program] = DeclareVariables(setup, sos_program)
     [decision_vars, sos_program] = DeclareHyperplaneVariables(setup, sos_program);
-    [decision_vars, sos_program] = DeclareConstraintVariables(setup, order, decision_vars, sos_program);
+    [decision_vars, sos_program] = DeclareConstraintVariables(setup, decision_vars, sos_program);
 end
 
 function [decision_vars, sos_program] = DeclareHyperplaneVariables(setup, sos_program)
@@ -18,8 +18,8 @@ function [decision_vars, sos_program] = DeclareHyperplaneVariables(setup, sos_pr
     decision_vars.b = b;
 end
 
-function [decision_vars, sos_program] = DeclareConstraintVariables(setup, order, decision_vars, sos_program)
-    sigma_degs = GetSigmaDegrees(setup, order);
+function [decision_vars, sos_program] = DeclareConstraintVariables(setup, decision_vars, sos_program)
+    sigma_degs = GetSigmaDegrees(setup);
 
     NotifyUser(sigma_degs);
     for i = 1:length(sigma_degs)
@@ -29,18 +29,19 @@ function [decision_vars, sos_program] = DeclareConstraintVariables(setup, order,
 
 end
 
-function sigma_degs = GetSigmaDegrees(setup, order)
+function sigma_degs = GetSigmaDegrees(setup)
     sigma_degs = NaN * ones(length(setup.constraints), 1);
     constraints = setup.constraints;
 
     for j = 1:length(constraints)
         g = constraints(j);
         g_deg = GetDegree(g);
-        sigma_degs(j) = GetSigmaDegree(g_deg, order);
+        sigma_degs(j) = GetSigmaDegree(g_deg, setup);
     end
 end
 
-function sigma_deg = GetSigmaDegree(g_deg, order)
+function sigma_deg = GetSigmaDegree(g_deg, setup)
+    order = setup.truncation_order;
     if g_deg > order
        sigma_deg = -Inf;
     else

@@ -1,23 +1,21 @@
 function result = RunFullDisjunction(setup)
-    order = setup.truncation_order;
-
-    NotifyUserStartingHierarchy(order);
-    result = ComputeOneValidInequality(setup, order);
+    NotifyUserStartingHierarchy(setup);
+    result = ComputeOneValidInequality(setup);
     NotifyUserAboutSolution(result);
 end
 
-function best = ComputeOneValidInequality(setup, order)
+function best = ComputeOneValidInequality(setup)
     best = Result();
 
     fun_dirs = setup.fundamental_directions;
 
     for fun_dir_index = 1:length(fun_dirs)
-        solution = SolveOneFundamentalDirection(setup, order, fun_dir_index);
+        solution = SolveOneFundamentalDirection(setup, fun_dir_index);
         NotifyUserAboutSolution(solution);
         best = CompareBestWithCurrent(best, solution);
     end
     best.InitLinearFunction(setup.vartable);
-    NotifyUserOneLevelOfHierarchySolved(order);
+    NotifyUserOneLevelOfHierarchySolved(setup);
 end
 
 function best = CompareBestWithCurrent(best, solution)
@@ -29,13 +27,14 @@ function best = CompareBestWithCurrent(best, solution)
     end
 end
 
-function NotifyUserStartingHierarchy(order)
+function NotifyUserStartingHierarchy(setup)
     fprintf('\n\n************************************\n');
-    fprintf('VI: Starting k = %dth truncation order.\n', order);
+    fprintf('VI: At scenario %s.\n', setup.name);
+    fprintf('VI: Starting k = %dth truncation order.\n', setup.truncation_order);
 end
 
-function NotifyUserOneLevelOfHierarchySolved(order)
-    fprintf('VI: Done for M[k] with k = %d.\n', order);
+function NotifyUserOneLevelOfHierarchySolved(setup)
+    fprintf('VI: Done for M[k] with k = %d.\n', setup.truncation_order);
 end
 
 function NotifyUserAboutSolution(solution)

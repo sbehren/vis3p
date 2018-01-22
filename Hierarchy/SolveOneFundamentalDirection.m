@@ -1,7 +1,7 @@
-function solution = SolveOneFundamentalDirection(setup, order, fun_dir_index)
+function solution = SolveOneFundamentalDirection(setup, fun_dir_index)
     sos_program = InitSosProgram(setup);
 
-    [decision_vars, sos_program] = DeclareVariables(setup, order, sos_program);
+    [decision_vars, sos_program] = DeclareVariables(setup, sos_program);
 
     sos_program = AddConstraints(setup, fun_dir_index, decision_vars, sos_program);
 
