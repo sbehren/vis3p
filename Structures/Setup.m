@@ -24,10 +24,11 @@ classdef Setup < handle
             obj.fundamental_directions = fundamental_directions;
         end
 
-        function path = GetPath(obj)
-            AssertGitIntegrity();
-            git_revision = GetGitRevison();
-            path = strcat(obj.name, '-', git_revision, '.eps');
+        function path = GetFigureName(obj)
+            path = [obj.name '.eps'];
+        end
+        function name = GetLogfileName(obj)
+            name = [obj.name '.log'];
         end
     end
 end

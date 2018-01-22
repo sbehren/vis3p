@@ -11,8 +11,8 @@ function DrawResults(setup, result)
 
     SetLegends(setup);
 
-    path = setup.GetPath();
-    export_fig(path);
+    eps_filename = setup.GetFigureName();
+    export_fig(eps_filename);
     StopPlottingEngine();
 end
 

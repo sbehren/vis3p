@@ -14,6 +14,7 @@ function saved_result = DrawIndependentScenarios()
             saved_result = result;
         end
         DrawResults(setup, result);
+        LogSetupAndResult(setup, result);
     end
 end
 
@@ -22,4 +23,5 @@ function DrawDependentScenario(result)
     dependent_setup.fixed_normal = result.a;
     result = RunFullDisjunction(dependent_setup);
     DrawResults(dependent_setup, result);
+    LogSetupAndResult(setup, result);
 end

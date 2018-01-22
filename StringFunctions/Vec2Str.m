@@ -4,8 +4,8 @@ function result = Vec2Str(vec)
     for i = 1:l
         str_entry = num2str(vec(i));
         if i < l
-            result = strcat(result, str_entry, ',');
+            result = [result str_entry ','];
         end
     end
-    result = strcat(result, str_entry, ')');
+    result = [result str_entry ')'];
 end
