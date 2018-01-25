@@ -62,7 +62,7 @@ function StopPlottingEngine()
 end
 
 function SetLegends(setup)
-    constraints_str = setup.GetConstraintStrings();
+    constraints_str = setup.GetPlottingStrings();
     valid_ineq_str = 'valid inequality $a^Tx \leq b$';
 
     if setup.is_feasibility_variant

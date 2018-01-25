@@ -24,14 +24,14 @@ end
 function WriteHeader(file, setup)
     hash = setup.GetFigureHash();
 
-    fwriteln(file, ['% Results for figure with SHA256 = ' hash ' follow below.']);
+    fwriteln(file, ['% Results for figure with SHA256 = ' hash ' follow in next line.']);
 
 end
 
 function WriteConstraints(file, setup)
     constraints = setup.GetConstraintStrings();
     for i = 1:length(constraints)
-        con = constraints{i};
+        con = ['$' constraints{i} '$'];
         WriteCell(file, con);
     end
 end
@@ -62,7 +62,7 @@ end
 
 function WriteFigure(file, setup)
     name = setup.name;
-    label = ['\label{fig:' name '}'];
+    label = ['\ref{fig:' name '}'];
     fwriteln(file, label);
 end
 

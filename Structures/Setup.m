@@ -55,11 +55,19 @@ classdef Setup < handle
         end
 
         function result = GetConstraintStrings(obj)
-            constraints = obj.constraints;
-            result = cell(1, length(constraints));
-            for i = 1:length(constraints)
-                constraint = constraints(i);
-                result{i} = SymbolicConstraint2Latex(constraint, i);
+            cons = obj.constraints;
+            result = cell(1, length(cons));
+            for i = 1:length(cons)
+                con = cons(i);
+                result{i} = SymbolicConstraint2Latex(con);
+            end
+        end
+
+        function result = GetPlottingStrings(obj)
+            cons = obj.GetConstraintStrings();
+            for i = 1:length(cons)
+                constr = cons{i};
+                result{i} = ['$g_', num2str(i), '=', constr, '$'];
             end
         end
     end
