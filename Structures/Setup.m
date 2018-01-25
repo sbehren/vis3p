@@ -44,10 +44,19 @@ classdef Setup < handle
             hash = GetFileHash(filename);
             obj.figure_hash = hash;
         end
+
         function hash = GetFigureHash(obj)
             hash = obj.figure_hash;
             assert(~ strcmp(hash, ''), 'VI: Error in getting hash of figure.');
         end
+
+        function result = GetConstraintStrings(obj)
+            constraints = obj.constraints;
+            result = cell(1, length(constraints));
+            for i = 1:length(constraints)
+                constraint = constraints(i);
+                result{i} = SymbolicConstraint2Latex(constraint, i);
+            end
+        end
     end
 end
-

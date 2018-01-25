@@ -62,7 +62,7 @@ function StopPlottingEngine()
 end
 
 function SetLegends(setup)
-    constraints_str = GetConstraintStrings(setup.constraints);
+    constraints_str = setup.GetConstraintStrings();
     valid_ineq_str = 'valid inequality $a^Tx \leq b$';
 
     if setup.is_feasibility_variant
@@ -78,12 +78,4 @@ function SetLegends(setup)
     legend(legend_text, style_config{:});
     xlabel('$x_1$', style_config{:});
     ylabel('$x_2$', style_config{:});
-end
-
-function result = GetConstraintStrings(constraints)
-    result = cell(1, length(constraints));
-    for i = 1:length(constraints)
-        constraint = constraints(i);
-        result{i} = SymbolicConstraint2Latex(constraint, i);
-    end
 end
