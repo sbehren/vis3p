@@ -84,12 +84,6 @@ function result = GetConstraintStrings(constraints)
     result = cell(1, length(constraints));
     for i = 1:length(constraints)
         constraint = constraints(i);
-        result{i} = ConvertToLatex(constraint, i);
+        result{i} = SymbolicConstraint2Latex(constraint, i);
     end
-end
-
-function result = ConvertToLatex(sym_expr, index)
-    raw = char(sym_expr);
-    not_padded = strrep(raw, 'x', 'x_');
-    result = ['$g_', num2str(index), '=', not_padded, '$'];
 end
