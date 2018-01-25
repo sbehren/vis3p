@@ -1,3 +1,4 @@
-*.eps
-*.log
+data/*.eps
+data/*.log
+data/*.tex
 reference-data

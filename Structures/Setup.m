@@ -35,6 +35,10 @@ classdef Setup < handle
             name = obj.GetFilenameWithEnding('log');
         end
 
+        function name = GetTexfileName(obj)
+            name = obj.GetFilenameWithEnding('tex');
+        end
+
         function prefix = GetFilenameWithEnding(obj, ending)
             prefix = [obj.data_folder '/' obj.name '.' ending];
         end

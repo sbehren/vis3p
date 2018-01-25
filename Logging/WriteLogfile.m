@@ -60,7 +60,3 @@ function WriteNumericalValue(file, value, description)
     output_str = [description ' = ' Float2Str(value)];
     fwriteln(file, output_str);
 end
-
-function fwriteln(file, str)
-    fprintf(file, '%s\n', str);
-end
