@@ -1,7 +1,7 @@
 function DrawAllScenarios()
 
-    %all_setups = {GetBoundedScenarioLowOrder};
-    all_setups = {GetBoundedScenarioLowOrder(), GetBoundedScenarioHighOrder(), GetUnboundedScenario(), GetNoFeasiblePointScenario(), GetReoptimizeScenario()};
+    all_setups = {GetBoundedScenarioLowOrder};
+    %all_setups = {GetBoundedScenarioLowOrder(), GetBoundedScenarioHighOrder(), GetUnboundedScenario(), GetNoFeasiblePointScenario(), GetReoptimizeScenario()};
     fixed_normal = NaN;
 
     for i = 1:length(all_setups)

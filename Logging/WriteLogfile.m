@@ -39,7 +39,7 @@ function WriteFigureInfo(file, setup)
     info_filename = ['Filename of figure: ' filename];
     fwriteln(file, info_filename);
 
-    hash = GetFileHash(filename);
+    hash = setup.GetFigureHash();
     hash_info = ['SHA-256 value of figure: ' hash];
     fwriteln(file, hash_info);
 end

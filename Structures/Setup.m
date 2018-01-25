@@ -17,6 +17,7 @@ classdef Setup < handle
         sdp_solver = 'sdpt3';
 
         data_folder = 'data';
+        figure_hash = '';
     end
 
     methods
@@ -36,6 +37,16 @@ classdef Setup < handle
 
         function prefix = GetFilenameWithEnding(obj, ending)
             prefix = [obj.data_folder '/' obj.name '.' ending];
+        end
+
+        function SetFigureHash(obj)
+            filename = obj.GetFigureName();
+            hash = GetFileHash(filename);
+            obj.figure_hash = hash;
+        end
+        function hash = GetFigureHash(obj)
+            hash = obj.figure_hash;
+            assert(~ strcmp(hash, ''), 'VI: Error in getting hash of figure.');
         end
     end
 end
