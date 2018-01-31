@@ -1,6 +1,6 @@
 function DrawAllScenarios()
 
-    %all_setups = {GetBoundedScenarioLowOrder};
+    %all_setups = {GetUnboundedScenario};
     all_setups = {GetBoundedScenarioLowOrder(), GetBoundedScenarioHighOrder(), GetUnboundedScenario(), GetNoFeasiblePointScenario(), GetReoptimizeScenario()};
     fixed_normal = NaN;
 

@@ -14,7 +14,7 @@ classdef Setup < handle
 
         fundamental_directions;
 
-        sdp_solver = 'sdpt3';
+        sdp_solver = 'sedumi';
 
         data_folder = 'data';
         figure_hash = '';

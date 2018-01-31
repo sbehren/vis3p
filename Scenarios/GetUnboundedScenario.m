@@ -4,7 +4,7 @@ function setup = GetUnboundedScenario()
 
     setup.constraints = InitConstraintPolynomials(setup);
     setup.q = [0.25; 0.5];
-    setup.truncation_order = 4;
+    setup.truncation_order = 5;
 end
 
 function constraints = InitConstraintPolynomials(setup)
