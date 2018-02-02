@@ -6,7 +6,7 @@ function setup = GetReoptimizeScenario()
     setup.normal_is_fixed = true;
     setup.constraints = InitConstraintPolynomials(setup);
     setup.q = false;
-    setup.truncation_order = 4;
+    setup.truncation_order = 5;
 end
 
 function constraints = InitConstraintPolynomials(setup)

@@ -8,7 +8,7 @@ function sos_program = AddFacetConstraints(setup, fun_dir_index, decision_vars, 
     fun_dirs = setup.fundamental_directions;
 
     fun_dir = fun_dirs{fun_dir_index};
-    fun_dir_str = sprintf('%d ', fun_dir);
+    fun_dir_str = Vec2Str(fun_dir);
     fprintf('VI: Adding equation for fundamental direction %s.\n', fun_dir_str);
 
     if ~ setup.normal_is_fixed

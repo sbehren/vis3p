@@ -10,5 +10,5 @@ end
 
 function constraints = InitConstraintPolynomials(setup)
     x = setup.vartable;
-    constraints = [x(2) - x(1)^2, x(2) - x(1)];
+    constraints = [8*(x(1)) * (x(2)) - 1, 1/16 - (x(1) + 0.5)^2];
 end
