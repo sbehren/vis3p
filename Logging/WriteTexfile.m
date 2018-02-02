@@ -2,10 +2,15 @@ function WriteTexfile(setup, result)
     filename = setup.GetTexfileName;
     file = fopen(filename, 'w');
     
-    WriteHeader(file, setup);
+    WriteLatexTable(file, setup, result);
+end
+
+function WriteLatexTable(file, setup, result)
+    WriteHeaderComment(file, setup);
 
     WriteConstraints(file, setup);
-    WriteLabel(file);
+    WriteFeasiblePoint(file, setup);
+    WriteProgramLabel(file);
     WriteOrder(file, setup);
 
     WriteOptimalValue(file, result);
@@ -14,11 +19,11 @@ function WriteTexfile(setup, result)
     WriteFigureLabelAndNewline(file, setup);
 end
 
-function WriteHeader(file, setup)
+function WriteHeaderComment(file, setup)
     hash = setup.GetFigureHash();
+    figurename = setup.GetFigureName();
 
-    fwriteln(file, ['% Results for figure with SHA256 = ' hash ' follow in next line.']);
-
+    fwriteln(file, ['% Results for figure ' figurename ' with SHA256 = ' hash ' follow in next line.']);
 end
 
 function WriteConstraints(file, setup)
@@ -29,7 +34,19 @@ function WriteConstraints(file, setup)
     end
 end
 
-function WriteLabel(file)
+function WriteFeasiblePoint(file, setup)
+    for i = 1:setup.num_vars
+        if setup.is_feasibility_variant
+            q_str = 'n/a';
+        else
+            current_coordinate = setup.q(i);
+            q_str = Float2ShortString(current_coordinate);
+        end
+        WriteCell(file, q_str);
+    end
+end
+
+function WriteProgramLabel(file)
     WriteCell(file, 'insert label');
 end
 
@@ -67,5 +84,5 @@ function WriteCell(file, str)
 end
 
 function result = Float2ShortString(number)
-    result = Float2Str(number, 4);
+    result = Float2Str(number, 2);
 end
