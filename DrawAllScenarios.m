@@ -12,7 +12,7 @@ function DrawAllScenarios()
             scenario.fixed_normal = fixed_normal;
         end
 
-        scenario = RunFullDisjunction(scenario);
+        scenario.RunFullDisjunction();
 
         if strcmp(scenario.name, 'feasibility')
             fixed_normal = scenario.a;
@@ -26,4 +26,3 @@ end
 function AssertScenariosInRightOrder(fixed_normal)
    assert(~ any(isnan(fixed_normal)), 'VI: Error. Need fixed normal for reoptimize scenario.');
 end
-
