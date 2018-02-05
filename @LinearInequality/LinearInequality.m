@@ -5,11 +5,10 @@ classdef LinearInequality < handle
         objective = Inf;
         solved = false;
         numerical_errors = NaN;
-        linear_function = NaN;
     end
     methods
-        function InitLinearFunction(obj, vartable)
-            obj.linear_function = obj.b - sum(obj.a .* vartable);
+        function linear_function = GetLinearFunction(obj, vartable)
+            linear_function = obj.b - sum(obj.a .* vartable);
         end
     end
 end

@@ -14,7 +14,6 @@ function scenario = ComputeOneValidInequality(scenario)
         NotifyUserAboutSolution(candidate);
         scenario = CompareCurrentWithCandidate(scenario, candidate);
     end
-    scenario.InitLinearFunction(scenario.vartable);
     NotifyUserSolvedSosProgram(scenario);
 end
 

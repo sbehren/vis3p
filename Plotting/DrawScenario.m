@@ -31,7 +31,8 @@ end
 
 function PlotValidInequality(scenario)
     disp('VI: Start plotting.')
-    ContourPlotWrapper(scenario.linear_function);
+    vartable = scenario.vartable;
+    ContourPlotWrapper(scenario.GetLinearFunction(vartable));
 end
 
 function PlotFeasiblePoint(scenario)
