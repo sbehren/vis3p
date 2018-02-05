@@ -19,7 +19,7 @@ function DrawAllScenarios()
         end
 
         DrawResults(setup, result);
-        LogSetupAndResult(setup, result);
+        LogScenario(setup, result);
     end
 end
 
