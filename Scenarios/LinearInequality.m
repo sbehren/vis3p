@@ -1,4 +1,4 @@
-classdef Result < handle
+classdef LinearInequality < handle
     properties
         a = NaN;
         b = NaN;

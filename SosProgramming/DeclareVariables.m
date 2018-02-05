@@ -1,13 +1,13 @@
-function [decision_vars, sos_program] = DeclareVariables(setup, sos_program)
-    [decision_vars, sos_program] = DeclareHyperplaneVariables(setup, sos_program);
-    [decision_vars, sos_program] = DeclareConstraintVariables(setup, decision_vars, sos_program);
+function [decision_vars, sos_program] = DeclareVariables(scenario, sos_program)
+    [decision_vars, sos_program] = DeclareHyperplaneVariables(scenario, sos_program);
+    [decision_vars, sos_program] = DeclareConstraintVariables(scenario, decision_vars, sos_program);
 end
 
-function [decision_vars, sos_program] = DeclareHyperplaneVariables(setup, sos_program)
-    if setup.normal_is_fixed
-        a = setup.fixed_normal;
+function [decision_vars, sos_program] = DeclareHyperplaneVariables(scenario, sos_program)
+    if scenario.normal_is_fixed
+        a = scenario.fixed_normal;
     else
-        a = sym('a', [setup.num_vars, 1]);
+        a = sym('a', [scenario.num_vars, 1]);
         sos_program = sosdecvar(sos_program, a);
     end
 
@@ -18,30 +18,30 @@ function [decision_vars, sos_program] = DeclareHyperplaneVariables(setup, sos_pr
     decision_vars.b = b;
 end
 
-function [decision_vars, sos_program] = DeclareConstraintVariables(setup, decision_vars, sos_program)
-    sigma_degs = GetSigmaDegrees(setup);
+function [decision_vars, sos_program] = DeclareConstraintVariables(scenario, decision_vars, sos_program)
+    sigma_degs = GetSigmaDegrees(scenario);
 
     NotifyUser(sigma_degs);
     for i = 1:length(sigma_degs)
         sigma_deg = sigma_degs(i);
-        [decision_vars.sigma(i), sos_program] = DeclareDenseSosPoly(setup.vartable, sigma_deg, sos_program);
+        [decision_vars.sigma(i), sos_program] = DeclareDenseSosPoly(scenario.vartable, sigma_deg, sos_program);
     end
 
 end
 
-function sigma_degs = GetSigmaDegrees(setup)
-    sigma_degs = NaN * ones(length(setup.constraints), 1);
-    constraints = setup.constraints;
+function sigma_degs = GetSigmaDegrees(scenario)
+    sigma_degs = NaN * ones(length(scenario.constraints), 1);
+    constraints = scenario.constraints;
 
     for j = 1:length(constraints)
         g = constraints(j);
         g_deg = GetDegree(g);
-        sigma_degs(j) = GetSigmaDegree(g_deg, setup);
+        sigma_degs(j) = GetSigmaDegree(g_deg, scenario);
     end
 end
 
-function sigma_deg = GetSigmaDegree(g_deg, setup)
-    order = setup.truncation_order;
+function sigma_deg = GetSigmaDegree(g_deg, scenario)
+    order = scenario.truncation_order;
     if g_deg > order
        sigma_deg = -Inf;
     else

@@ -1,13 +1,13 @@
-function setup = GetUnboundedScenario()
-    setup = GetStandardSetup();
-    setup.name = 'unbounded';
+function scenario = GetUnboundedScenario()
+    scenario = GetStandardScenario();
+    scenario.name = 'unbounded';
 
-    setup.constraints = InitConstraintPolynomials(setup);
-    setup.q = [0.25; 0.5];
-    setup.truncation_order = 5;
+    scenario.constraints = InitConstraintPolynomials(scenario);
+    scenario.q = [0.25; 0.5];
+    scenario.truncation_order = 5;
 end
 
-function constraints = InitConstraintPolynomials(setup)
-    x = setup.vartable;
+function constraints = InitConstraintPolynomials(scenario)
+    x = scenario.vartable;
     constraints = [x(2) - x(1)^2, x(2)^2 - x(1)];
 end

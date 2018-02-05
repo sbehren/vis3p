@@ -1,45 +1,45 @@
-function WriteTexfile(setup, result)
-    filename = setup.GetTexfileName;
+function WriteTexfile(scenario)
+    filename = scenario.GetTexfileName;
     file = fopen(filename, 'w');
     
-    WriteLatexTable(file, setup, result);
+    WriteLatexTable(file, scenario);
 end
 
-function WriteLatexTable(file, setup, result)
-    WriteHeaderComment(file, setup);
+function WriteLatexTable(file, scenario)
+    WriteHeaderComment(file, scenario);
 
-    WriteConstraints(file, setup);
-    WriteFeasiblePoint(file, setup);
+    WriteConstraints(file, scenario);
+    WriteFeasiblePoint(file, scenario);
     WriteProgramLabel(file);
-    WriteOrder(file, setup);
+    WriteOrder(file, scenario);
 
-    WriteOptimalValue(file, result);
-    WriteDirection(file, result);
-    WriteRhs(file, result);
-    WriteFigureLabelAndNewline(file, setup);
+    WriteOptimalValue(file, scenario);
+    WriteDirection(file, scenario);
+    WriteRhs(file, scenario);
+    WriteFigureLabelAndNewline(file, scenario);
 end
 
-function WriteHeaderComment(file, setup)
-    hash = setup.GetFigureHash();
-    figurename = setup.GetFigureName();
+function WriteHeaderComment(file, scenario)
+    hash = scenario.GetFigureHash();
+    figurename = scenario.GetFigureName();
 
     fwriteln(file, ['% Results for figure ' figurename ' with SHA256 = ' hash ' follow in next line.']);
 end
 
-function WriteConstraints(file, setup)
-    constraints = setup.GetConstraintStrings();
+function WriteConstraints(file, scenario)
+    constraints = scenario.GetConstraintStrings();
     for i = 1:length(constraints)
         con = ['$' constraints{i} '$'];
         WriteCell(file, con);
     end
 end
 
-function WriteFeasiblePoint(file, setup)
-    for i = 1:setup.num_vars
-        if setup.is_feasibility_variant
+function WriteFeasiblePoint(file, scenario)
+    for i = 1:scenario.num_vars
+        if scenario.is_feasibility_variant
             q_str = 'n/a';
         else
-            current_coordinate = setup.q(i);
+            current_coordinate = scenario.q(i);
             q_str = Float2ShortString(current_coordinate);
         end
         WriteCell(file, q_str);
@@ -50,28 +50,28 @@ function WriteProgramLabel(file)
     WriteCell(file, 'insert label');
 end
 
-function WriteOrder(file, setup)
-    order_str = num2str(setup.truncation_order);
+function WriteOrder(file, scenario)
+    order_str = num2str(scenario.truncation_order);
     WriteCell(file, order_str);
 end
 
-function WriteOptimalValue(file, result)
-    WriteFloatToCell(file, result.objective);
+function WriteOptimalValue(file, scenario)
+    WriteFloatToCell(file, scenario.objective);
 end
 
-function WriteDirection(file, result)
-    a = result.a;
+function WriteDirection(file, scenario)
+    a = scenario.a;
     for i = 1:length(a)
-        WriteFloatToCell(file, result.a(i));
+        WriteFloatToCell(file, scenario.a(i));
     end
 end
 
-function WriteRhs(file, result)
-    WriteFloatToCell(file, result.b);
+function WriteRhs(file, scenario)
+    WriteFloatToCell(file, scenario.b);
 end
 
-function WriteFigureLabelAndNewline(file, setup)
-    name = setup.name;
+function WriteFigureLabelAndNewline(file, scenario)
+    name = scenario.name;
     label = ['\ref{fig:' name '} \\'];
     fwriteln(file, label);
 end

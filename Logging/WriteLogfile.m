@@ -1,12 +1,12 @@
-function WriteLogfile(setup, result)
-    filename = setup.GetLogfileName;
+function WriteLogfile(scenario)
+    filename = scenario.GetLogfileName;
     file = fopen(filename, 'w');
 
     WriteTimeStamp(file);
     WriteGitStatus(file);
 
-    WriteFigureInfo(file, setup);
-    WriteSolutionInfo(file, result)
+    WriteFigureInfo(file, scenario);
+    WriteSolutionInfo(file, scenario)
 end
 
 function WriteTimeStamp(file)
@@ -34,26 +34,26 @@ function git_status = GetGitStatus()
     git_status = ['Git status: ' git_status];
 end
 
-function WriteFigureInfo(file, setup)
-    filename = setup.GetFigureName();
+function WriteFigureInfo(file, scenario)
+    filename = scenario.GetFigureName();
     info_filename = ['Filename of figure: ' filename];
     fwriteln(file, info_filename);
 
-    hash = setup.GetFigureHash();
+    hash = scenario.GetFigureHash();
     hash_info = ['SHA-256 value of figure: ' hash];
     fwriteln(file, hash_info);
 end
 
-function WriteSolutionInfo(file, result)
-    a = result.a;
+function WriteSolutionInfo(file, scenario)
+    a = scenario.a;
     for i = 1:length(a)
         a_desc = ['a(' num2str(i) ')'];
         WriteNumericalValue(file, a(i), a_desc);
     end
 
-    WriteNumericalValue(file, result.b, 'b');
+    WriteNumericalValue(file, scenario.b, 'b');
 
-    WriteNumericalValue(file, result.objective, 'Objective value');
+    WriteNumericalValue(file, scenario.objective, 'Objective value');
 end
 
 function WriteNumericalValue(file, value, description)

@@ -1,12 +1,12 @@
-function [objective_function, sos_program] = SetObjective(setup, decision_vars, sos_program)
+function [objective_function, sos_program] = SetObjective(scenario, decision_vars, sos_program)
     disp('VI: Setting objective.');
 
     a = decision_vars.a;
     b = decision_vars.b;
-    q = setup.q;
+    q = scenario.q;
 
-    if setup.is_feasibility_variant
-        if setup.normal_is_fixed
+    if scenario.is_feasibility_variant
+        if scenario.normal_is_fixed
             objective_function = b;
         else
             objective_function = 0;

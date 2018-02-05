@@ -1,6 +1,6 @@
-function solution = CallSosSolver(setup, decision_vars, objective_function, sos_program)
-    solution = Result();
-    sdp_solver_options.solver = setup.sdp_solver;
+function solution = CallSosSolver(scenario, decision_vars, objective_function, sos_program)
+    solution = LinearInequality();
+    sdp_solver_options.solver = scenario.sdp_solver;
 
     try
         disp('VI: Attempting to solve sos program.');

@@ -1,49 +1,47 @@
-function result = RunFullDisjunction(setup)
-    result = ComputeOneValidInequality(setup);
-    NotifyUserAboutSolution(result);
+function scenario = RunFullDisjunction(scenario)
+    scenario = ComputeOneValidInequality(scenario);
+    NotifyUserAboutSolution(scenario);
 end
 
-function best = ComputeOneValidInequality(setup)
-    NotifyUserStartingFullDisjunction(setup);
+function scenario = ComputeOneValidInequality(scenario)
+    NotifyUserStartingFullDisjunction();
 
-    best = Result();
-
-    fun_dirs = setup.fundamental_directions;
+    fun_dirs = scenario.fundamental_directions;
 
     for fun_dir_index = 1:length(fun_dirs)
-        NotifyUserStartingSosProgram(setup, fun_dir_index);
-        solution = SolveOneFundamentalDirection(setup, fun_dir_index);
+        NotifyUserStartingSosProgram(scenario, fun_dir_index);
+        solution = SolveOneFundamentalDirection(scenario, fun_dir_index);
         NotifyUserAboutSolution(solution);
-        best = CompareBestWithCurrent(best, solution);
+        scenario = CompareBestWithCurrent(scenario, solution);
     end
-    best.InitLinearFunction(setup.vartable);
-    NotifyUserSolvedSosProgram(setup);
+    scenario.InitLinearFunction(scenario.vartable);
+    NotifyUserSolvedSosProgram(scenario);
 end
 
-function best = CompareBestWithCurrent(best, solution)
-    if solution.solved && best.objective > solution.objective
+function scenario = CompareBestWithCurrent(scenario, solution)
+    if solution.solved && scenario.objective > solution.objective
         NotifyUserBetterSolutionFound();
-        best.objective = solution.objective;
-        best.a = solution.a;
-        best.b = solution.b;
+        scenario.objective = solution.objective;
+        scenario.a = solution.a;
+        scenario.b = solution.b;
     end
 end
 
-function NotifyUserStartingFullDisjunction(setup)
+function NotifyUserStartingFullDisjunction()
     fprintf('\n\n************************************\n');
     fprintf('VI: Starting full disjunction.\n');
 end
 
-function NotifyUserStartingSosProgram(setup, fun_dir_index)
+function NotifyUserStartingSosProgram(scenario, fun_dir_index)
     fprintf('\n\nVI: ***** Setting up new sos program. *****\n');
-    fprintf('VI: Scenario name is "%s".\n', setup.name);
+    fprintf('VI: Scenario name is "%s".\n', scenario.name);
 
-    num_fun_dirs = length(setup.fundamental_directions);
-    fprintf('VI: Starting disjunction %d of %d (truncation order k = %d).\n', fun_dir_index, num_fun_dirs, setup.truncation_order);
+    num_fun_dirs = length(scenario.fundamental_directions);
+    fprintf('VI: Starting disjunction %d of %d (truncation order k = %d).\n', fun_dir_index, num_fun_dirs, scenario.truncation_order);
 end
 
-function NotifyUserSolvedSosProgram(setup)
-    fprintf('VI: Done for M[k] with k = %d.\n', setup.truncation_order);
+function NotifyUserSolvedSosProgram(scenario)
+    fprintf('VI: Done for M[k] with k = %d.\n', scenario.truncation_order);
 end
 
 function NotifyUserAboutSolution(solution)

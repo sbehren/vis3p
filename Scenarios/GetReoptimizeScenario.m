@@ -1,15 +1,15 @@
-function setup = GetReoptimizeScenario()
-    setup = GetStandardSetup();
-    setup.name = 'reoptimize';
+function scenario = GetReoptimizeScenario()
+    scenario = GetStandardScenario();
+    scenario.name = 'reoptimize';
 
-    setup.is_feasibility_variant = true;
-    setup.normal_is_fixed = true;
-    setup.constraints = InitConstraintPolynomials(setup);
-    setup.q = false;
-    setup.truncation_order = 5;
+    scenario.is_feasibility_variant = true;
+    scenario.normal_is_fixed = true;
+    scenario.constraints = InitConstraintPolynomials(scenario);
+    scenario.q = false;
+    scenario.truncation_order = 5;
 end
 
-function constraints = InitConstraintPolynomials(setup)
-    x = setup.vartable;
+function constraints = InitConstraintPolynomials(scenario)
+    x = scenario.vartable;
     constraints = [x(2) - x(1)^2, x(2) - x(1)];
 end

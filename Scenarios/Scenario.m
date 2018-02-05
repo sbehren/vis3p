@@ -1,4 +1,4 @@
-classdef Setup < handle
+classdef Scenario < LinearInequality
     properties
         name;
 
@@ -21,7 +21,7 @@ classdef Setup < handle
     end
 
     methods
-        function obj = Setup(num_vars, fundamental_directions)
+        function obj = Scenario(num_vars, fundamental_directions)
             obj.num_vars = num_vars;
             obj.vartable = sym('x', [num_vars, 1]);
             obj.fundamental_directions = fundamental_directions;

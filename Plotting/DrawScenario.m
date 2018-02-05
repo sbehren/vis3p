@@ -1,17 +1,17 @@
-function DrawResults(setup, result)
+function DrawScenario(scenario)
     StartPlottingEngine();
 
-    PlotConstraints(setup);
-    PlotValidInequality(result);
+    PlotConstraints(scenario);
+    PlotValidInequality(scenario);
 
     
-    if ~ setup.is_feasibility_variant
-        PlotFeasiblePoint(setup);
+    if ~ scenario.is_feasibility_variant
+        PlotFeasiblePoint(scenario);
     end
 
-    SetLegends(setup);
+    SetLegends(scenario);
 
-    eps_filename = setup.GetFigureName();
+    eps_filename = scenario.GetFigureName();
     export_fig(eps_filename);
     StopPlottingEngine();
 end
@@ -23,19 +23,19 @@ function StartPlottingEngine()
     pbaspect([1 1 1]);
 end
 
-function PlotConstraints(setup)
-    for constraint = setup.constraints
+function PlotConstraints(scenario)
+    for constraint = scenario.constraints
         ContourPlotWrapper(constraint)
     end
 end
 
-function PlotValidInequality(result)
+function PlotValidInequality(scenario)
     disp('VI: Start plotting.')
-    ContourPlotWrapper(result.linear_function);
+    ContourPlotWrapper(scenario.linear_function);
 end
 
-function PlotFeasiblePoint(setup)
-    plot(setup.q(1), setup.q(2),'kp', 'MarkerSize', 10);
+function PlotFeasiblePoint(scenario)
+    plot(scenario.q(1), scenario.q(2),'kp', 'MarkerSize', 10);
 end
 
 function ContourPlotWrapper(f)
@@ -61,14 +61,14 @@ function StopPlottingEngine()
     hold off;
 end
 
-function SetLegends(setup)
-    constraints_str = setup.GetPlottingStrings();
+function SetLegends(scenario)
+    constraints_str = scenario.GetPlottingStrings();
     valid_ineq_str = 'valid inequality $a^Tx \leq b$';
 
-    if setup.is_feasibility_variant
+    if scenario.is_feasibility_variant
         legend_text = [constraints_str, {valid_ineq_str}];
     else
-        q_str = [num2str(setup.q(1)), ',', num2str(setup.q(2))];
+        q_str = [num2str(scenario.q(1)), ',', num2str(scenario.q(2))];
         feasible_point_str = ['feasible point $q=(', q_str, ')$'];
         legend_text = [constraints_str, {valid_ineq_str, feasible_point_str}];
     end

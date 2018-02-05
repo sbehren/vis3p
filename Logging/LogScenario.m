@@ -1,5 +1,5 @@
-function LogScenario(setup, result)
-    setup.SetFigureHash();
-    WriteLogfile(setup, result);
-    WriteTexfile(setup, result);
+function LogScenario(scenario)
+    scenario.SetFigureHash();
+    WriteLogfile(scenario);
+    WriteTexfile(scenario);
 end

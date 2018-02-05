@@ -1,29 +1,29 @@
 function DrawAllScenarios()
 
-    all_setups = {GetBoundedScenarioLowOrder};
-    %all_setups = {GetBoundedScenarioLowOrder(), GetBoundedScenarioHighOrder(), GetUnboundedScenario(), GetNoFeasiblePointScenario(), GetReoptimizeScenario()};
+    %all_scenarios = {GetBoundedScenarioLowOrder};
+    all_scenarios = {GetBoundedScenarioLowOrder(), GetBoundedScenarioHighOrder(), GetUnboundedScenario(), GetNoFeasiblePointScenario(), GetReoptimizeScenario()};
     fixed_normal = NaN;
 
-    for i = 1:length(all_setups)
-        setup = all_setups{i};
+    for i = 1:length(all_scenarios)
+        scenario = all_scenarios{i};
 
-        if strcmp(setup.name, 'reoptimize')
-            AssertSetupsInRightOrder(fixed_normal);
-            setup.fixed_normal = fixed_normal;
+        if strcmp(scenario.name, 'reoptimize')
+            AssertScenariosInRightOrder(fixed_normal);
+            scenario.fixed_normal = fixed_normal;
         end
 
-        result = RunFullDisjunction(setup);
+        scenario = RunFullDisjunction(scenario);
 
-        if strcmp(setup.name, 'feasibility')
-            fixed_normal = result.a;
+        if strcmp(scenario.name, 'feasibility')
+            fixed_normal = scenario.a;
         end
 
-        DrawResults(setup, result);
-        LogScenario(setup, result);
+        DrawScenario(scenario);
+        LogScenario(scenario);
     end
 end
 
-function AssertSetupsInRightOrder(fixed_normal)
+function AssertScenariosInRightOrder(fixed_normal)
    assert(~ any(isnan(fixed_normal)), 'VI: Error. Need fixed normal for reoptimize scenario.');
 end
 
