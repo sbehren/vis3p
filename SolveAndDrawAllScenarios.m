@@ -18,7 +18,7 @@ function DrawAllScenarios()
             fixed_normal = scenario.a;
         end
 
-        DrawScenario(scenario);
+        scenario.Draw();
         scenario.Log();
     end
 end

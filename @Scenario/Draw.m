@@ -1,17 +1,17 @@
-function DrawScenario(scenario)
+function Draw(obj)
     StartPlottingEngine();
 
-    PlotConstraints(scenario);
-    PlotValidInequality(scenario);
+    PlotConstraints(obj);
+    PlotValidInequality(obj);
 
     
-    if ~ scenario.is_feasibility_variant
-        PlotFeasiblePoint(scenario);
+    if ~ obj.is_feasibility_variant
+        PlotFeasiblePoint(obj);
     end
 
-    SetLegends(scenario);
+    SetLegends(obj);
 
-    eps_filename = scenario.GetFigureName();
+    eps_filename = obj.GetFigureName();
     export_fig(eps_filename);
     StopPlottingEngine();
 end
