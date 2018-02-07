@@ -4,7 +4,7 @@ function SolveAndDrawAllScenarios()
 
     for i = 1:length(all_scenarios)
         scenario = all_scenarios{i};
-        SolveAndDraw(scenario);
+        scenario.SolveAndDraw();
     end
 end
 
