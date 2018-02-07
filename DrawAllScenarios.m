@@ -19,7 +19,7 @@ function DrawAllScenarios()
         end
 
         DrawScenario(scenario);
-        LogScenario(scenario);
+        scenario.Log();
     end
 end
 

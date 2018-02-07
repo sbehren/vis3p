@@ -1,8 +1,8 @@
-function WriteTexfile(scenario)
-    filename = scenario.GetTexfileName;
+function WriteTexfile(obj)
+    filename = obj.GetTexfileName;
     file = fopen(filename, 'w');
     
-    WriteLatexTable(file, scenario);
+    WriteLatexTable(file, obj);
 end
 
 function WriteLatexTable(file, scenario)

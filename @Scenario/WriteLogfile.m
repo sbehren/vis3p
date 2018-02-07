@@ -1,12 +1,12 @@
-function WriteLogfile(scenario)
-    filename = scenario.GetLogfileName;
+function WriteLogfile(obj)
+    filename = obj.GetLogfileName;
     file = fopen(filename, 'w');
 
     WriteTimeStamp(file);
     WriteGitStatus(file);
 
-    WriteFigureInfo(file, scenario);
-    WriteSolutionInfo(file, scenario)
+    WriteFigureInfo(file, obj);
+    WriteSolutionInfo(file, obj)
 end
 
 function WriteTimeStamp(file)
