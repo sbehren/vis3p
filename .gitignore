@@ -1,4 +1,5 @@
 data/*.eps
 data/*.log
 data/*.tex
+pathdef.m
 reference-data
