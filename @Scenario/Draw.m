@@ -10,9 +10,8 @@ function Draw(obj)
     end
 
     SetLegends(obj);
+    PrintToFile(obj);
 
-    eps_filename = obj.GetFigureName();
-    export_fig(eps_filename);
     StopPlottingEngine();
 end
 
@@ -79,4 +78,9 @@ function SetLegends(scenario)
     legend(legend_text, style_config{:});
     xlabel('$x_1$', style_config{:});
     ylabel('$x_2$', style_config{:});
+end
+
+function PrintToFile(scenario)
+    eps_filename = scenario.GetFigureName();
+    export_fig(eps_filename);
 end
