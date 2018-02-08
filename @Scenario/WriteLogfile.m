@@ -5,8 +5,10 @@ function WriteLogfile(obj)
     WriteTimeStamp(file);
     WriteGitStatus(file);
 
+    WriteSetupInfo(file, obj);
+    WriteSolutionInfo(file, obj);
+
     WriteFigureInfo(file, obj);
-    WriteSolutionInfo(file, obj)
 end
 
 function WriteTimeStamp(file)
@@ -34,6 +36,33 @@ function git_status = GetGitStatus()
     git_status = ['Git status: ' git_status];
 end
 
+function WriteSolutionInfo(file, scenario)
+    a = scenario.a;
+    for i = 1:length(a)
+        a_desc = ['a(' num2str(i) ')'];
+        WriteNumericalScalar(file, a(i), a_desc);
+    end
+
+    WriteNumericalVector(file, scenario.a, 'a');
+    WriteNumericalScalar(file, scenario.b, 'b');
+    WriteNumericalScalar(file, scenario.objective, 'Objective value');
+end
+
+function WriteSetupInfo(file, scenario)
+    WriteNumericalScalar(file, scenario.truncation_order, 'Truncation order k');
+    WriteNumericalVector(file, scenario.q, 'Feasible point q');
+    WriteConstraints(file, scenario);
+end
+
+function WriteConstraints(file, scenario)
+    constraints = scenario.GetConstraintStrings();
+    len = length(constraints);
+    for i = 1:len
+        constraint_str = ['h(' num2str(i) ') = '];
+        fwrite(file, constraint_str);
+    end
+end
+
 function WriteFigureInfo(file, scenario)
     filename = scenario.GetFigureName();
     info_filename = ['Filename of figure: ' filename];
@@ -44,19 +73,16 @@ function WriteFigureInfo(file, scenario)
     fwriteln(file, hash_info);
 end
 
-function WriteSolutionInfo(file, scenario)
-    a = scenario.a;
-    for i = 1:length(a)
-        a_desc = ['a(' num2str(i) ')'];
-        WriteNumericalValue(file, a(i), a_desc);
-    end
-
-    WriteNumericalValue(file, scenario.b, 'b');
-
-    WriteNumericalValue(file, scenario.objective, 'Objective value');
-end
-
-function WriteNumericalValue(file, value, description)
+function WriteNumericalScalar(file, value, description)
     output_str = [description ' = ' Float2Str(value)];
     fwriteln(file, output_str);
+end
+
+function WriteNumericalVector(file, vec, description)
+    for i = 1:length(vec)
+        rolled_out_desc = [description '(' num2str(i) ')'];
+        value = vec(i);
+        WriteNumericalScalar(file, value, rolled_out_desc);
+    end
+
 end

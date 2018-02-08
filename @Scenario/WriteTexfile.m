@@ -35,7 +35,6 @@ function cell_values = GetTableCells(scenario)
     cell_values{end + 1} = GetProgramRef();
     cell_values{end + 1} = GetConstraintRef();
 
-    %cell_values          = AppendConstraintStr(cell_values, scenario);
     cell_values{end + 1} = GetOrder(scenario);
     cell_values          = AppendFeasiblePointStr(cell_values, scenario);
 
@@ -53,16 +52,6 @@ end
 
 function result = GetConstraintRef()
     result = 'insert ref';
-end
-
-function cell_values = AppendConstraintStr(cell_values, scenario)
-    constraints = scenario.GetConstraintStrings();
-    len = length(constraints);
-    con_cell = cell(1, len);
-    for i = 1:len
-        con_cell{i} = ['$' constraints{i} '$'];
-    end
-    cell_values = [cell_values, con_cell];
 end
 
 function cell_values = AppendFeasiblePointStr(cell_values, scenario)
