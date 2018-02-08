@@ -4,11 +4,10 @@ function WriteLogfile(obj)
 
     WriteTimeStamp(file);
     WriteGitStatus(file);
+    WriteFigureInfo(file, obj);
 
     WriteSetupInfo(file, obj);
     WriteSolutionInfo(file, obj);
-
-    WriteFigureInfo(file, obj);
 end
 
 function WriteTimeStamp(file)
@@ -37,29 +36,34 @@ function git_status = GetGitStatus()
 end
 
 function WriteSolutionInfo(file, scenario)
-    a = scenario.a;
-    for i = 1:length(a)
-        a_desc = ['a(' num2str(i) ')'];
-        WriteNumericalScalar(file, a(i), a_desc);
-    end
-
     WriteNumericalVector(file, scenario.a, 'a');
     WriteNumericalScalar(file, scenario.b, 'b');
     WriteNumericalScalar(file, scenario.objective, 'Objective value');
 end
 
 function WriteSetupInfo(file, scenario)
-    WriteNumericalScalar(file, scenario.truncation_order, 'Truncation order k');
-    WriteNumericalVector(file, scenario.q, 'Feasible point q');
     WriteConstraints(file, scenario);
+    WriteTruncationOrder(file, scenario);
+    WriteFeasiblePoint(file, scenario);
+end
+
+function WriteTruncationOrder(file, scenario)
+    truncation_str = ['Truncation order k = ' num2str(scenario.truncation_order)];
+    fwriteln(file, truncation_str);
+end
+
+function WriteFeasiblePoint(file, scenario)
+    WriteNumericalVector(file, scenario.q, 'Feasible point q');
 end
 
 function WriteConstraints(file, scenario)
-    constraints = scenario.GetConstraintStrings();
-    len = length(constraints);
+    con = scenario.GetConstraintStrings();
+    len = length(con);
     for i = 1:len
-        constraint_str = ['h(' num2str(i) ') = '];
-        fwrite(file, constraint_str);
+        con_name = ['h(' num2str(i) ')'];
+        con_formula = con{i};
+        con_str = [con_name ' = ' con_formula];
+        fwriteln(file, con_str);
     end
 end
 
@@ -84,5 +88,4 @@ function WriteNumericalVector(file, vec, description)
         value = vec(i);
         WriteNumericalScalar(file, value, rolled_out_desc);
     end
-
 end
