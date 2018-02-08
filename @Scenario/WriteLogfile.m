@@ -29,7 +29,7 @@ function git_status = GetGitStatus()
     if changed_files_present 
         git_status = 'WARNING: Uncommitted changes.';
     else
-        git_status = 'Directory clean: no uncommitted changes.';
+        git_status = 'Directory clean, no uncommitted changes present.';
     end
     git_status = ['Git status: ' git_status];
 end

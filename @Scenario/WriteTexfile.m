@@ -29,25 +29,30 @@ function WriteLatexTableCells(file, scenario)
     WriteCellsToFile(file, cell_values);
 end
 
-function WriteCellsToFile(file, cell_values)
-    cell_string = join(cell_values, ' & ');
-    fwrite(file, cell_string);
-end
-
 function cell_values = GetTableCells(scenario)
     cell_values = {};
 
-    cell_values          = AppendConstraintStr(cell_values, scenario);
+    cell_values{end + 1} = GetProgramRef();
+    cell_values{end + 1} = GetConstraintRef();
+
+    %cell_values          = AppendConstraintStr(cell_values, scenario);
+    cell_values{end + 1} = GetOrder(scenario);
     cell_values          = AppendFeasiblePointStr(cell_values, scenario);
 
-    cell_values{end + 1} = GetProgramLabel();
-    cell_values{end + 1} = GetOrder(scenario);
 
     cell_values{end + 1} = GetOptimalValue(scenario);
     cell_values          = AppendNormalVector(cell_values, scenario);
     cell_values{end + 1} = GetRhs(scenario);
 
-    cell_values{end + 1} = GetFigureLabel(scenario);
+    cell_values{end + 1} = GetFigureRef(scenario);
+end
+
+function result = GetProgramRef()
+    result = 'insert ref';
+end
+
+function result = GetConstraintRef()
+    result = 'insert ref';
 end
 
 function cell_values = AppendConstraintStr(cell_values, scenario)
@@ -75,10 +80,6 @@ function cell_values = AppendFeasiblePointStr(cell_values, scenario)
     cell_values = [cell_values, q_strs];
 end
 
-function result = GetProgramLabel()
-    result = 'insert label';
-end
-
 function order_str = GetOrder(scenario)
     order_str = num2str(scenario.truncation_order);
 end
@@ -103,9 +104,14 @@ function result = GetRhs(scenario)
     result = Float2ShortString(scenario.b);
 end
 
-function result = GetFigureLabel(scenario)
+function result = GetFigureRef(scenario)
     name = scenario.name;
     result = ['\ref{fig:' name '}'];
+end
+
+function WriteCellsToFile(file, cell_values)
+    cell_string = join(cell_values, ' & ');
+    fwrite(file, cell_string);
 end
 
 function result = Float2ShortString(number)
