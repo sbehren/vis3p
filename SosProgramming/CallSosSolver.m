@@ -55,7 +55,7 @@ function solution = GetSolutions(decision_vars, objective_function, solution, so
     solution.objective = GetOptimalSolution(objective_function, sos_program);
     solution.a = GetOptimalSolution(decision_vars.a, sos_program);
     solution.b = GetOptimalSolution(decision_vars.b, sos_program);
-    disp(['VI: Sos program successfully solved.']);
+    disp('VI: Sos program successfully solved.');
 end
 
 function value = GetOptimalSolution(variable, sos_program)
