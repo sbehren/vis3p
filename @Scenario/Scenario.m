@@ -65,7 +65,9 @@ classdef Scenario < LinearInequality
 
         function result = GetPlottingStrings(obj)
             cons = obj.GetConstraintStrings();
-            for i = 1:length(cons)
+            len = length(cons);
+            result = cell(1, len);
+            for i = 1:len
                 constr = cons{i};
                 result{i} = ['$g_', num2str(i), '=', constr, '$'];
             end
