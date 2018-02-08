@@ -1,11 +1,23 @@
-function result = Vec2Str(vec)
-    result = '(';
-    l = length(vec);
-    for i = 1:l
-        str_entry = num2str(vec(i));
-        if i < l
-            result = [result str_entry ','];
-        end
+function result = Vec2Str(num_vec)
+    str_cell = ConvertNumericalVectorToStrings(num_vec);
+
+    str_concatenated = ConcatenateStrings(str_cell);
+
+    result = PadWithBrackets(str_concatenated);
+end
+
+function str_cell = ConvertNumericalVectorToStrings(num_vec)
+    len = length(num_vec);
+    str_cell = cell(len, 1);
+    for i = 1:len
+        str_cell{i} = num2str(num_vec(i));
     end
-    result = [result str_entry ')'];
+end
+
+function str_concatenated = ConcatenateStrings(str_cell)
+    str_concatenated = strjoin(str_cell, ', ');
+end
+
+function result = PadWithBrackets(str)
+    result = ['(' str ')'];
 end
