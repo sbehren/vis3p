@@ -69,7 +69,7 @@ classdef Scenario < LinearInequality
             result = cell(1, len);
             for i = 1:len
                 constr = cons{i};
-                result{i} = ['$g_', num2str(i), '=', constr, '$'];
+                result{i} = ['$h_', num2str(i), '=', constr, '$'];
             end
         end
     end

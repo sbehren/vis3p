@@ -34,19 +34,19 @@ function sigma_degs = GetSigmaDegrees(scenario)
     constraints = scenario.constraints;
 
     for j = 1:length(constraints)
-        g = constraints(j);
-        g_deg = GetDegree(g);
-        sigma_degs(j) = GetSigmaDegree(g_deg, scenario);
+        h = constraints(j);
+        h_deg = GetDegree(h);
+        sigma_degs(j) = GetSigmaDegree(h_deg, scenario);
     end
 end
 
-function sigma_deg = GetSigmaDegree(g_deg, scenario)
+function sigma_deg = GetSigmaDegree(h_deg, scenario)
     order = scenario.truncation_order;
-    if g_deg > order
+    if h_deg > order
        sigma_deg = -Inf;
     else
-       % Let k = truncation order. Then we require deg(sigma_j g_j) <= k.
-       sigma_deg = RoundDownToEven(order - g_deg); 
+       % Let k = truncation order. Then we require deg(sigma_j h_j) <= k.
+       sigma_deg = RoundDownToEven(order - h_deg); 
     end
 end
 
