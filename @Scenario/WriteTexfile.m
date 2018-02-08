@@ -108,5 +108,5 @@ function result = Float2ShortString(number)
 end
 
 function WriteLineEnding(file)
-    fwrite(file, ' \\');
+    fwriteln(file, ' \\');
 end
