@@ -14,6 +14,9 @@ classdef Scenario < LinearInequality
 
         enable_hierarchy = false;
 
+        annotate_feasible_set = true;
+        annotation_position = [];
+
         fundamental_directions;
 
         sdp_solver = 'sedumi';

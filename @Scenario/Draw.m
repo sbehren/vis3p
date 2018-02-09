@@ -4,10 +4,8 @@ function Draw(obj)
     PlotConstraints(obj);
     PlotValidInequality(obj);
 
-    
-    if ~ obj.is_feasibility_variant
-        PlotFeasiblePoint(obj);
-    end
+    PlotFeasiblePointIfRequired(obj);
+    PlotAnnotationIfRequired(obj);
 
     SetLegends(obj);
     PrintToFile(obj);
@@ -34,8 +32,18 @@ function PlotValidInequality(scenario)
     ContourPlotWrapper(scenario.GetLinearFunction(vartable));
 end
 
-function PlotFeasiblePoint(scenario)
-    plot(scenario.q(1), scenario.q(2),'kp', 'MarkerSize', 10);
+function PlotFeasiblePointIfRequired(scenario)
+    if ~ scenario.is_feasibility_variant
+        plot(scenario.q(1), scenario.q(2),'kp', 'MarkerSize', 10);
+    end
+end
+
+function PlotAnnotationIfRequired(scenario)
+    if scenario.annotate_feasible_set
+        latex_annotation = texlabel('S');   
+        pos = scenario.annotation_position;
+        text(pos(1), pos(2), latex_annotation, 'FontSize', 16);
+    end
 end
 
 function ContourPlotWrapper(f)

@@ -5,6 +5,8 @@ function scenario = GetBoundedScenarioLowOrder()
     scenario.constraints = InitConstraintPolynomials(scenario);
     scenario.q = [0.4; -0.5];
     scenario.truncation_order = 2;
+
+    scenario.annotation_position = [0.5, 0];
 end
 
 function constraints = InitConstraintPolynomials(scenario)
