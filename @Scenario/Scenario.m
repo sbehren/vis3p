@@ -19,7 +19,6 @@ classdef Scenario < LinearInequality
         sdp_solver = 'sedumi';
 
         data_folder = 'data';
-        figure_hash = '';
     end
 
     methods
@@ -45,15 +44,9 @@ classdef Scenario < LinearInequality
             prefix = [obj.data_folder '/' obj.name '.' ending];
         end
 
-        function SetFigureHash(obj)
+        function hash = GetFigureHash(obj)
             filename = obj.GetFigureName();
             hash = GetFileHash(filename);
-            obj.figure_hash = hash;
-        end
-
-        function hash = GetFigureHash(obj)
-            hash = obj.figure_hash;
-            assert(~ strcmp(hash, ''), 'VI: Error in getting hash of figure.');
         end
 
         function result = GetConstraintStrings(obj)
