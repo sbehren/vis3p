@@ -12,7 +12,7 @@ classdef Scenario < LinearInequality
         normal_is_fixed = false;        % a is fixed
         fixed_normal = [];
 
-        enable_hierarchy = false;
+        enable_hierarchy = true;
 
         annotate_feasible_set = true;
         annotation_position = [];

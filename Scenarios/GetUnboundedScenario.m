@@ -5,6 +5,7 @@ function scenario = GetUnboundedScenario()
     scenario.constraints = InitConstraintPolynomials(scenario);
     scenario.q = [0.25; 0.5];
     scenario.truncation_order = 4;
+    scenario.annotation_position = [0, 1];
 end
 
 function constraints = InitConstraintPolynomials(scenario)

@@ -6,6 +6,7 @@ function scenario = GetNoFeasiblePointScenario()
     scenario.constraints = InitConstraintPolynomials(scenario);
     scenario.q = false;
     scenario.truncation_order = 4;
+    scenario.annotation_position = [-0.5, -1];
 end
 
 function constraints = InitConstraintPolynomials(scenario)
