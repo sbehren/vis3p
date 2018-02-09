@@ -11,7 +11,7 @@ The output may look like the following.
 
 ## Requirements
 
-You need the following software installed. I specify the software version that worked for me; it may work with other versions. All MATLAB tools need to be in the path.
+You need the following software installed. I specify the software version that worked for me; it may work with other versions. All MATLAB tools need to be added to the MATLAB search path.
 
 * [MATLAB 2016b](https://www.mathworks.com) as computing environment
 * [Symbolic Math Toolbox](https:/mathworks.com/products/symbolic.html) to work with symbolic polynomials
