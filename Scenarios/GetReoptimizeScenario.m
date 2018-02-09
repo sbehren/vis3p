@@ -3,5 +3,4 @@ function scenario = GetReoptimizeScenario()
     scenario.name = 'reoptimize';
 
     scenario.normal_is_fixed = true;
-    scenario.q = false;
 end
