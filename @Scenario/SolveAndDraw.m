@@ -1,14 +1,17 @@
 function SolveAndDraw(obj)
-    persistent fixed_normal;
-
-    obj = SupplyFixedNormalIfNecessary(obj, fixed_normal);
-
-    obj.RunFullDisjunction();
-
-    fixed_normal = SaveFixedNormalIfNecessary(obj, fixed_normal);
-
+    RunDisjunctionIfNotDisabled(obj);
     obj.Draw();
     obj.Log();
+end
+
+function RunDisjunctionIfNotDisabled(obj)
+    persistent fixed_normal;
+
+    if obj.enable_hierarchy
+        obj = SupplyFixedNormalIfNecessary(obj, fixed_normal);
+        obj.RunFullDisjunction();
+        fixed_normal = SaveFixedNormalIfNecessary(obj, fixed_normal);
+    end
 end
 
 function scenario = SupplyFixedNormalIfNecessary(scenario, fixed_normal)
