@@ -60,7 +60,7 @@ function cell_values = AppendFeasiblePointStr(cell_values, scenario)
     num_cells = scenario.num_vars;
     q_strs = cell(1, num_cells);
     for i = 1:num_cells
-        if scenario.is_feasibility_variant
+        if scenario.set_objective_to_zero
             q_str = 'n/a';
         else
             current_coordinate = scenario.q(i);

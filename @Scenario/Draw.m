@@ -33,7 +33,7 @@ function PlotValidInequality(scenario)
 end
 
 function PlotFeasiblePointIfRequired(scenario)
-    if ~ scenario.is_feasibility_variant
+    if ~ scenario.set_objective_to_zero
         plot(scenario.q(1), scenario.q(2),'kp', 'MarkerSize', 10);
     end
 end
@@ -73,7 +73,7 @@ function SetLegends(scenario)
     constraints_str = scenario.GetPlottingStrings();
     valid_ineq_str = 'valid inequality $a^Tx \leq b$';
 
-    if scenario.is_feasibility_variant
+    if scenario.set_objective_to_zero
         legend_text = [constraints_str, {valid_ineq_str}];
     else
         q_str = [num2str(scenario.q(1)), ',', num2str(scenario.q(2))];

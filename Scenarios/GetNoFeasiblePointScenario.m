@@ -2,7 +2,7 @@ function scenario = GetNoFeasiblePointScenario()
     scenario = GetStandardScenario();
     scenario.name = 'feasibility';
 
-    scenario.is_feasibility_variant = true;
+    scenario.set_objective_to_zero = true;
     scenario.constraints = InitConstraintPolynomials(scenario);
     scenario.q = false;
     scenario.truncation_order = 4;

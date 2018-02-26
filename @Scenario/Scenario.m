@@ -8,7 +8,7 @@ classdef Scenario < LinearInequality
         truncation_order;
         q;
 
-        is_feasibility_variant = false; % set objective = 0
+        set_objective_to_zero = false; % set objective = 0
         normal_is_fixed = false;        % a is fixed
         fixed_normal = [];
 
