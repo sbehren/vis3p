@@ -5,14 +5,15 @@ function [objective_function, sos_program] = SetObjective(scenario, decision_var
     b = decision_vars.b;
     q = scenario.q;
 
-    if scenario.set_objective_to_zero
-        if scenario.normal_is_fixed
+    switch scenario.choice_obj_fun
+        case scenariopack.Objective.b_only
             objective_function = b;
-        else
+        case scenariopack.Objective.zero
             objective_function = 0;
-        end
-    else
-        objective_function = b - sum( a.* q);
+        case scenariopack.Objective.distance
+            objective_function = b - sum( a.* q);
+        otherwise
+            error('VI: Objective invalid')
     end
 
     sos_program = sossetobj(sos_program, objective_function);

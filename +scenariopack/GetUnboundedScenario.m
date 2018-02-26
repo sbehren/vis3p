@@ -1,6 +1,7 @@
 function scenario = GetUnboundedScenario()
-    scenario = GetStandardScenario();
+    scenario = scenariopack.GetStandardScenario();
     scenario.name = 'unbounded';
+    scenario.choice_obj_fun = scenariopack.Objective.distance;
 
     scenario.constraints = InitConstraintPolynomials(scenario);
     scenario.q = [0.25; 0.5];

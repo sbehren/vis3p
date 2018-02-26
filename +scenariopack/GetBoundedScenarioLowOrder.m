@@ -1,6 +1,8 @@
 function scenario = GetBoundedScenarioLowOrder()
-    scenario = GetStandardScenario();
+    scenario = scenariopack.GetStandardScenario();
+
     scenario.name = 'bounded_low';
+    scenario.choice_obj_fun = scenariopack.Objective.distance;
 
     scenario.constraints = InitConstraintPolynomials(scenario);
     scenario.q = [0.4; -0.5];

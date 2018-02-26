@@ -4,7 +4,7 @@ function [decision_vars, sos_program] = DeclareVariables(scenario, sos_program)
 end
 
 function [decision_vars, sos_program] = DeclareHyperplaneVariables(scenario, sos_program)
-    if scenario.normal_is_fixed
+    if scenario.fix_normal
         a = scenario.fixed_normal;
     else
         a = sym('a', [scenario.num_vars, 1]);

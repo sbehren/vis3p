@@ -1,10 +1,9 @@
 function scenario = GetNoFeasiblePointScenario()
-    scenario = GetStandardScenario();
+    scenario = scenariopack.GetStandardScenario();
     scenario.name = 'feasibility';
 
-    scenario.set_objective_to_zero = true;
+    scenario.choice_obj_fun = scenariopack.Objective.zero;
     scenario.constraints = InitConstraintPolynomials(scenario);
-    scenario.q = false;
     scenario.truncation_order = 4;
     scenario.annotation_position = [-0.5, -1];
 end

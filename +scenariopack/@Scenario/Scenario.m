@@ -1,18 +1,18 @@
-classdef Scenario < LinearInequality
+classdef Scenario < scenariopack.LinearInequality
     properties
         name;
+        enable_hierarchy = true;
 
         num_vars;
         vartable;
         constraints;
         truncation_order;
-        q;
+        q = [];
 
-        set_objective_to_zero = false; % set objective = 0
-        normal_is_fixed = false;        % a is fixed
+        choice_obj_fun;
+        fix_normal = false;
         fixed_normal = [];
 
-        enable_hierarchy = true;
 
         annotate_feasible_set = true;
         annotation_position = [];

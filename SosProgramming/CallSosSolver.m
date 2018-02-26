@@ -1,5 +1,5 @@
 function solution = CallSosSolver(scenario, decision_vars, objective_function, sos_program)
-    solution = LinearInequality();
+    solution = scenariopack.LinearInequality();
     sdp_solver_options.solver = scenario.sdp_solver;
 
     try

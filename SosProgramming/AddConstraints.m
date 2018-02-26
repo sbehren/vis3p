@@ -11,7 +11,7 @@ function sos_program = AddFacetConstraints(scenario, fun_dir_index, decision_var
     fun_dir_str = Vec2Str(fun_dir);
     fprintf('VI: Adding equation for fundamental direction %s.\n', fun_dir_str);
 
-    if ~ scenario.normal_is_fixed
+    if ~ scenario.fix_normal
         equation = sum(fun_dir .* a) - 1;
         sos_program = sosineq(sos_program, equation);
     end

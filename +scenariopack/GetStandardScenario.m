@@ -1,7 +1,7 @@
 function scenario = GetStandardScenario()
     num_vars = 2;
     fundamental_directions = GetStandardFundamentalDirections();
-    scenario = Scenario(num_vars, fundamental_directions);
+    scenario = scenariopack.Scenario(num_vars, fundamental_directions);
 end
 
 function fundamental_directions = GetStandardFundamentalDirections()

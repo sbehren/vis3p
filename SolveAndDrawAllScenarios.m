@@ -9,5 +9,6 @@ function SolveAndDrawAllScenarios()
 end
 
 function all_scenarios = GetAllScenarios()
-    all_scenarios = {GetBoundedScenarioLowOrder(), GetBoundedScenarioHighOrder(), GetUnboundedScenario(), GetNoFeasiblePointScenario(), GetReoptimizeScenario()};
+    %all_scenarios = {scenariopack.GetNoFeasiblePointScenario(), scenariopack.GetReoptimizeScenario()};
+    all_scenarios = {scenariopack.GetBoundedScenarioLowOrder(), scenariopack.GetBoundedScenarioHighOrder(), scenariopack.GetUnboundedScenario(), scenariopack.GetNoFeasiblePointScenario(), scenariopack.GetReoptimizeScenario()};
 end
