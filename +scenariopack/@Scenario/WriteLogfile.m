@@ -54,7 +54,11 @@ function WriteTruncationOrder(file, scenario)
 end
 
 function WriteFeasiblePoint(file, scenario)
-    WriteNumericalVector(file, scenario.q, 'Feasible point q');
+    if isempty(scenario.q)
+        fwriteln(file, 'Feasible point: (no feasible point specified)');
+    else
+        WriteNumericalVector(file, scenario.q, 'Feasible point q');
+    end
 end
 
 function WriteConstraints(file, scenario)
