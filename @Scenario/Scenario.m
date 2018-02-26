@@ -22,6 +22,8 @@ classdef Scenario < LinearInequality
         sdp_solver = 'sedumi';
 
         data_folder = 'data';
+
+        solving_time = Inf;
     end
 
     methods

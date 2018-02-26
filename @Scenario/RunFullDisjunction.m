@@ -1,5 +1,7 @@
 function RunFullDisjunction(obj)
+    StartTimer();
     obj = ComputeOneValidInequality(obj);
+    LogTimePassed(obj);
     NotifyUserAboutSolution(obj);
 end
 
@@ -24,6 +26,15 @@ function scenario = CompareCurrentWithCandidate(scenario, candidate)
         scenario.a = candidate.a;
         scenario.b = candidate.b;
     end
+end
+
+function StartTimer()
+    tic;
+end
+
+function LogTimePassed(scenario)
+    scenario.solving_time = toc;
+    fprintf('VI: Solved scenario in %f seconds.\n', scenario.solving_time);
 end
 
 function NotifyUserStartingFullDisjunction()

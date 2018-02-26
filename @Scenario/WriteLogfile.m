@@ -4,6 +4,7 @@ function WriteLogfile(obj)
 
     WriteTimeStamp(file);
     WriteGitStatus(file);
+    WriteSolutionTime(file, obj);
     WriteFigureInfo(file, obj);
 
     WriteSetupInfo(file, obj);
@@ -65,6 +66,11 @@ function WriteConstraints(file, scenario)
         con_str = [con_name ' = ' con_formula];
         fwriteln(file, con_str);
     end
+end
+
+function WriteSolutionTime(file, scenario)
+    solving_time_str = ['Secondes elapsed in solution process = ' Float2Str(scenario.solving_time)];
+    fwriteln(file, solving_time_str);
 end
 
 function WriteFigureInfo(file, scenario)

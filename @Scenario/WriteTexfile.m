@@ -43,6 +43,8 @@ function cell_values = GetTableCells(scenario)
     cell_values          = AppendNormalVector(cell_values, scenario);
     cell_values{end + 1} = GetRhs(scenario);
 
+    cell_values{end + 1} = GetTimeElapsed(scenario);
+
     cell_values{end + 1} = GetFigureRef(scenario);
 end
 
@@ -92,6 +94,11 @@ end
 function result = GetRhs(scenario)
     result = Float2ShortString(scenario.b);
 end
+
+function result = GetTimeElapsed(scenario)
+    result = Float2ShortString(scenario.solving_time);
+end
+    
 
 function result = GetFigureRef(scenario)
     name = scenario.name;
