@@ -6,12 +6,12 @@ function [objective_function, sos_program] = SetObjective(scenario, decision_var
     q = scenario.q;
 
     switch scenario.choice_obj_fun
+        case scenariopack.Objective.distance
+            objective_function = b - sum( a.* q);
         case scenariopack.Objective.b_only
             objective_function = b;
         case scenariopack.Objective.zero
             objective_function = 0;
-        case scenariopack.Objective.distance
-            objective_function = b - sum( a.* q);
         otherwise
             error('VI: Objective invalid')
     end

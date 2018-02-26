@@ -28,7 +28,7 @@ function sos_program = AddValidityConstraint(scenario, decision_vars, sos_progra
 
     hyperplane_poly = b - sum(a .* x);
 
-    disp('VI: Adding constraint.')
+    disp('VI: Adding constraint that enforces a valid inequality.')
     constraint = hyperplane_poly - sum(sigma .* g);
 
     sos_program = sosineq(sos_program, constraint);
