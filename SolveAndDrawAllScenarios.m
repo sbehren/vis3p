@@ -10,6 +10,6 @@ end
 
 function all_scenarios = GetAllScenarios()
     %all_scenarios = {scenariopack.GetNoFeasiblePointScenario(), scenariopack.GetReoptimizeScenario()};
-    %all_scenarios = {scenariopack.GetTest()};
-    all_scenarios = {scenariopack.GetBoundedScenarioLowOrder(), scenariopack.GetBoundedScenarioHighOrder(), scenariopack.GetUnboundedScenario(), scenariopack.GetNoFeasiblePointScenario(), scenariopack.GetReoptimizeScenario()};
+    all_scenarios = {scenariopack.GetReoptimizeScenario()};
+    %all_scenarios = {scenariopack.GetBoundedScenarioLowOrder(), scenariopack.GetBoundedScenarioHighOrder(), scenariopack.GetUnboundedScenario(), scenariopack.GetNoFeasiblePointScenario(), scenariopack.GetReoptimizeScenario()};
 end
