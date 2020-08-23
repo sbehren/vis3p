@@ -1,7 +1,7 @@
 # vis3p 
 
 ## About
-vis3p is a research project in nonlinear mathematical optimization. vis3p computes and draws valid linear inequalities for sets that are given by polynomial inequalities, using a method known as sos programming; drawing is limited to two dimensions. This is joint work with [Anita Schöbel](https://www.mathematik.uni-kl.de/opt/personen/leitung/schoebel), the corresponding paper has now been published in [JOTA (Open Access)](https://link.springer.com/article/10.1007/s10957-020-01736-4).
+vis3p is a research project in nonlinear mathematical optimization. vis3p computes and draws valid linear inequalities for sets that are given by polynomial inequalities, using a method known as sos programming; drawing is limited to two dimensions. This is joint work with [Anita Schöbel](https://www.mathematik.uni-kl.de/opt/personen/leitung/schoebel), the corresponding paper has now been published in [JOTA (Behrends, S., Schöbel, A. Generating Valid Linear Inequalities for Nonlinear Programs via Sums of Squares. J Optim Theory Appl (2020). https://doi.org/10.1007/s10957-020-01736-4, Open Access)](https://link.springer.com/article/10.1007/s10957-020-01736-4).
 
 ## Example output
 
